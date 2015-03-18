@@ -17,6 +17,7 @@ namespace TimeLogRecursiveTags.Models
 
         public string TimeEntryDescription { get; set; }
 
+        //TODO do we need this?
         [ForeignKey("BookingCode")]
         public int BookingCodeId { get; set; }
         public virtual BookingCode BookingCode { get; set; }

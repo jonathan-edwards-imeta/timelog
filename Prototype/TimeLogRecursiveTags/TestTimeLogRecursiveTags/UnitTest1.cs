@@ -46,17 +46,53 @@ namespace TestTimeLogRecursiveTags
                 db.Tags.Add(mqTag);
                 db.SaveChanges();
 
-                var tdPhase1SpecBookingCode = new BookingCode() { TagTree = new TagTree() { Tag = specTag, RelatedTagTree = new TagTree() { Tag = phase1Tag, RelatedTagTree = new TagTree() { Tag = tdTag } } } };
-                var tdPhase1SpecDownstreamBookingCode = new BookingCode() { TagTree = new TagTree() { Tag = downstreamTag, RelatedTagTree = new TagTree() { Tag = specTag, RelatedTagTree = new TagTree() { Tag = phase1Tag, RelatedTagTree = new TagTree() { Tag = tdTag } } } } };
-                var tdPhase1ImplBookingCode = new BookingCode() { TagTree = new TagTree() { Tag = implTag, RelatedTagTree = new TagTree() { Tag = phase1Tag, RelatedTagTree = new TagTree() { Tag = tdTag } } } };
-                var tdPhase1ImplDownstreamBookingCode = new BookingCode() { TagTree = new TagTree() { Tag = downstreamTag, RelatedTagTree = new TagTree() { Tag = implTag, RelatedTagTree = new TagTree() { Tag = phase1Tag, RelatedTagTree = new TagTree() { Tag = tdTag } } } } };
-                var tdPhase1ImplDownstreamMqBookingCode = new BookingCode() { TagTree = new TagTree() { Tag = mqTag, RelatedTagTree = new TagTree() { Tag = downstreamTag, RelatedTagTree = new TagTree() { Tag = implTag, RelatedTagTree = new TagTree() { Tag = phase1Tag, RelatedTagTree = new TagTree() { Tag = tdTag } } } } } };
+
+                var tdTagTree = new TagTree() {Tag = tdTag};
+                var tdPhase1TagTree = new TagTree() {Tag = phase1Tag, RelatedTagTree = tdTagTree};
+                var tdPhase1SpecTagTree = new TagTree() { Tag = specTag, RelatedTagTree = tdPhase1TagTree };
+                var tdPhase1SpecDownStreamTagTree = new TagTree() {Tag=downstreamTag, RelatedTagTree = tdPhase1SpecTagTree};
+                var tdPhase1ImplementationTagTree = new TagTree() {Tag = implTag, RelatedTagTree = tdPhase1TagTree};
+                var tdPhase1ImplementationDownStreamTagTree = new TagTree() { Tag = downstreamTag, RelatedTagTree = tdPhase1ImplementationTagTree };
+                var tdPhase1ImplementationDownStreamMqTagTree = new TagTree() {Tag = mqTag, RelatedTagTree = tdPhase1ImplementationDownStreamTagTree};
+
+                var bmoTagTree = new TagTree() {Tag = bmoTag};
+                var bmoPhase1TagTree = new TagTree() { Tag = phase1Tag, RelatedTagTree = bmoTagTree };
+                var bmoPhase1SpecTagTree = new TagTree() { Tag = specTag, RelatedTagTree = bmoPhase1TagTree };
+                var bmoPhase1SpecDownStreamTagTree = new TagTree() { Tag = downstreamTag, RelatedTagTree = bmoPhase1SpecTagTree };
+                var bmoPhase1ImplementationTagTree = new TagTree() { Tag = implTag, RelatedTagTree = bmoPhase1TagTree };
+                var bmoPhase1ImplementationDownStreamTagTree = new TagTree() { Tag = downstreamTag, RelatedTagTree = bmoPhase1ImplementationTagTree };
+                var bmoPhase1ImplementationDownStreamMqTagTree = new TagTree() { Tag = mqTag, RelatedTagTree = bmoPhase1ImplementationDownStreamTagTree };
+
+                //var tdPhase1SpecBookingCode = new BookingCode() { TagTree = new TagTree() { Tag = specTag, RelatedTagTree = new TagTree() { Tag = phase1Tag, RelatedTagTree = new TagTree() { Tag = tdTag } } } };
+                //var tdPhase1SpecDownstreamBookingCode = new BookingCode() { TagTree = new TagTree() { Tag = downstreamTag, RelatedTagTree = new TagTree() { Tag = specTag, RelatedTagTree = new TagTree() { Tag = phase1Tag, RelatedTagTree = new TagTree() { Tag = tdTag } } } } };
+                //var tdPhase1ImplBookingCode = new BookingCode() { TagTree = new TagTree() { Tag = implTag, RelatedTagTree = new TagTree() { Tag = phase1Tag, RelatedTagTree = new TagTree() { Tag = tdTag } } } };
+                //var tdPhase1ImplDownstreamBookingCode = new BookingCode() { TagTree = new TagTree() { Tag = downstreamTag, RelatedTagTree = new TagTree() { Tag = implTag, RelatedTagTree = new TagTree() { Tag = phase1Tag, RelatedTagTree = new TagTree() { Tag = tdTag } } } } };
+                //var tdPhase1ImplDownstreamMqBookingCode = new BookingCode() { TagTree = new TagTree() { Tag = mqTag, RelatedTagTree = new TagTree() { Tag = downstreamTag, RelatedTagTree = new TagTree() { Tag = implTag, RelatedTagTree = new TagTree() { Tag = phase1Tag, RelatedTagTree = new TagTree() { Tag = tdTag } } } } } };
+
+                var tdPhase1SpecBookingCode = new BookingCode() {TagTree = tdPhase1SpecTagTree};
+                var tdPhase1SpecDownstreamBookingCode = new BookingCode() {TagTree = tdPhase1SpecDownStreamTagTree};
+                var tdPhase1ImplBookingCode = new BookingCode() {TagTree = tdPhase1ImplementationTagTree};
+                var tdPhase1ImplDownstreamBookingCode = new BookingCode() {TagTree = tdPhase1ImplementationDownStreamTagTree};
+                var tdPhase1ImplDownstreamMqBookingCode = new BookingCode() {TagTree = tdPhase1ImplementationDownStreamMqTagTree};
+
+                var bmoPhase1SpecBookingCode = new BookingCode() { TagTree = bmoPhase1SpecTagTree };
+                var bmoPhase1SpecDownstreamBookingCode = new BookingCode() { TagTree = bmoPhase1SpecDownStreamTagTree };
+                var bmoPhase1ImplBookingCode = new BookingCode() { TagTree = bmoPhase1ImplementationTagTree };
+                var bmoPhase1ImplDownstreamBookingCode = new BookingCode() { TagTree = bmoPhase1ImplementationDownStreamTagTree };
+                var bmoPhase1ImplDownstreamMqBookingCode = new BookingCode() { TagTree = bmoPhase1ImplementationDownStreamMqTagTree };
 
                 db.BookingCodes.Add(tdPhase1SpecBookingCode);
                 db.BookingCodes.Add(tdPhase1SpecDownstreamBookingCode);
                 db.BookingCodes.Add(tdPhase1ImplBookingCode);
                 db.BookingCodes.Add(tdPhase1ImplDownstreamBookingCode);
                 db.BookingCodes.Add(tdPhase1ImplDownstreamMqBookingCode);
+
+                db.BookingCodes.Add(bmoPhase1SpecBookingCode);
+                db.BookingCodes.Add(bmoPhase1SpecDownstreamBookingCode);
+                db.BookingCodes.Add(bmoPhase1ImplBookingCode);
+                db.BookingCodes.Add(bmoPhase1ImplDownstreamBookingCode);
+                db.BookingCodes.Add(bmoPhase1ImplDownstreamMqBookingCode);
+
                 db.SaveChanges();
 
                 var userJon = new User() { Name = "Jon" };
@@ -70,17 +106,22 @@ namespace TestTimeLogRecursiveTags
                 db.SaveChanges();
 
                 var bks = new[] { tdPhase1SpecBookingCode,
-                                    tdPhase1SpecDownstreamBookingCode,
+                                  tdPhase1SpecDownstreamBookingCode,
                                   tdPhase1ImplBookingCode,
-                    tdPhase1ImplDownstreamBookingCode,
-                    tdPhase1ImplDownstreamMqBookingCode
+                                  tdPhase1ImplDownstreamBookingCode,
+                                  tdPhase1ImplDownstreamMqBookingCode,
+                                  bmoPhase1SpecBookingCode,
+                                  bmoPhase1SpecDownstreamBookingCode,
+                                  bmoPhase1ImplBookingCode,
+                                  bmoPhase1ImplDownstreamBookingCode,
+                                  bmoPhase1ImplDownstreamMqBookingCode
                                 };
 
                 var us = new[] { userJon, userMark, userSteve, userNia};
 
                 for (var i=0; i< 200; i++)
                 {
-                    var bk = (i % 5 ) ;
+                    var bk = (i % 10 ) ;
                     var u = (i % 4) ;
                     var h = (i % 8) ;
 
