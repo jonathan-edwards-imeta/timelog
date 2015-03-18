@@ -1,13 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.22310.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeLogRecursiveTags", "TimeLogRecursiveTags\TimeLogRecursiveTags.csproj", "{7016F196-6ABD-47E2-A8FF-65CFDACD5C2B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTimeLogRecursiveTags", "TestTimeLogRecursiveTags\TestTimeLogRecursiveTags.csproj", "{6669749A-1D06-48FB-8305-F44831CEA66D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7016F196-6ABD-47E2-A8FF-65CFDACD5C2B} = {7016F196-6ABD-47E2-A8FF-65CFDACD5C2B}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UsefulSQL", "UsefulSQL", "{87033530-6084-42E0-80A4-1ED39409E163}"
+	ProjectSection(SolutionItems) = preProject
+		UsefulSQL\ChildTagTrees.sql = UsefulSQL\ChildTagTrees.sql
 	EndProjectSection
 EndProject
 Global
