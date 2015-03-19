@@ -83,7 +83,5 @@ select * from TimeEntry te
 join BookingCode bc on bc.Id = te.BookingCodeId
 join cfGetChildTags(null) ct on ct.id = bc.TagTreeId
 join Tag t on t.Id = ct.tagId
-join Enum_TagType tt on tt.Id = t.TagType
+join Enum_TagType tt on tt.Id = t.TagTypeId
 where tt.Name = 'Project'
-
-select * from Enum_TagType

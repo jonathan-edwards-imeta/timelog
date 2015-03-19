@@ -41,6 +41,8 @@ namespace TimeLogRecursiveTags.Models
 
             modelBuilder.Conventions.AddBefore<ForeignKeyIndexConvention>(new ForeignKeyNamingConvention());
 
+            modelBuilder.Conventions.Add(new EnumRenamingConvention());
+
             modelBuilder.Properties<int>().Where(x => x.Name == "Id").Configure(x => x.IsKey().HasColumnOrder(1));
             base.OnModelCreating(modelBuilder);
         }
