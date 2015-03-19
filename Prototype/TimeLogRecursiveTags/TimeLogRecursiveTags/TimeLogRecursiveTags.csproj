@@ -87,6 +87,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BookingCode.cs" />
+    <Compile Include="Models\Conventions\ForeignKeyNamingConvention .cs" />
     <Compile Include="Models\TagTree.cs" />
     <Compile Include="Models\TimeLogContext.cs" />
     <Compile Include="Models\Tag.cs" />

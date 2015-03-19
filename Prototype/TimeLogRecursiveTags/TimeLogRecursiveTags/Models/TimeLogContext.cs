@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
+using TimeLogRecursiveTags.Models.Conventions;
 
 namespace TimeLogRecursiveTags.Models
 {
@@ -17,6 +18,9 @@ namespace TimeLogRecursiveTags.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            modelBuilder.Conventions.AddBefore<ForeignKeyIndexConvention>(new ForeignKeyNamingConvention());
+
             modelBuilder.Properties<int>().Where(x => x.Name == "Id").Configure(x => x.IsKey().HasColumnOrder(1));
             base.OnModelCreating(modelBuilder);
         }
