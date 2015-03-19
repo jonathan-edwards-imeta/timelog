@@ -1,19 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Web;
+using EfEnumToLookup.LookupGenerator;
 using TimeLogRecursiveTags.Models.Conventions;
 
 namespace TimeLogRecursiveTags.Models
 {
+    public class TimeLogContextInitializer : DropCreateDatabaseAlways<TimeLogContext>
+    {
+        protected override void Seed(TimeLogContext context)
+        {
+            //Add some initial data...
+            //IList<Standard> defaultStandards = new List<Standard>();
+
+            //defaultStandards.Add(new Standard() { StandardName = "Standard 1", Description = "First Standard" });
+            //defaultStandards.Add(new Standard() { StandardName = "Standard 2", Description = "Second Standard" });
+            //defaultStandards.Add(new Standard() { StandardName = "Standard 3", Description = "Third Standard" });
+
+            //foreach (Standard std in defaultStandards)
+            //    context.Standards.Add(std);
+
+            base.Seed(context);
+
+            //Build enumeration tables.
+            var enumToLookup = new EnumToLookup();
+            enumToLookup.Apply(context);
+        }
+    }
+
+
     public class TimeLogContext : DbContext
     {
-        //public TimeLogContext() : base()
-        //{
-        //    Database.SetInitializer<TimeLogContext>(new DropCreateDatabaseAlways<TimeLogContext>());
-        //}
+        public TimeLogContext() : base()
+        {
+            Database.SetInitializer(new TimeLogContextInitializer());
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

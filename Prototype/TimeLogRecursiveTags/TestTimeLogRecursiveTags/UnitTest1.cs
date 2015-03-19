@@ -13,7 +13,7 @@ namespace TestTimeLogRecursiveTags
         [TestInitialize]
         public void Init()
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<TimeLogContext>());
+            //Database.SetInitializer(new DropCreateDatabaseAlways<TimeLogContext>());
             //using (var db = new TimeLogContext())
             //{                
             //    db.Database.Initialize(true);                

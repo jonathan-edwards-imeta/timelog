@@ -78,4 +78,12 @@ join BookingCode bc on bc.Id = te.BookingCodeId
 join cfGetChildTags(null) ct on ct.id = bc.TagTreeId
 where ct.tagId = 5
 
+--Get time for all Project related tag types.
+select * from TimeEntry te
+join BookingCode bc on bc.Id = te.BookingCodeId
+join cfGetChildTags(null) ct on ct.id = bc.TagTreeId
+join Tag t on t.Id = ct.tagId
+join Enum_TagType tt on tt.Id = t.TagType
+where tt.Name = 'Project'
 
+select * from Enum_TagType
