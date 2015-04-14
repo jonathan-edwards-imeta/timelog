@@ -85,3 +85,17 @@ join cfGetChildTags(null) ct on ct.id = bc.TagTreeId
 join Tag t on t.Id = ct.tagId
 join Enum_TagType tt on tt.Id = t.TagTypeId
 where tt.Name = 'Project'
+
+
+select * from TimeEntry te
+join [User] u on u.Id = te.TimeEntryUserId
+where TimeEntryCreated >= '2015-03-23' and TimeEntryCreated <= '2015-03-30'
+and u.id = 5
+
+select * from [user] u
+where u.id not in
+(
+select distinct TimeEntryUserId from TimeEntry te
+where TimeEntryCreated >= '2015-03-23' and TimeEntryCreated <= '2015-03-30'
+)
+
