@@ -8,5 +8,7 @@ namespace Timelog.DataService.Interface
         IEnumerable<TimeEntry> GetAll();
         TimeEntry GetById(int id);
         void Add(TimeEntry timeEntry);
+        TimeEntry Put(TimeEntry timeEntry);
+        bool Delete(int id);
     }
 }
