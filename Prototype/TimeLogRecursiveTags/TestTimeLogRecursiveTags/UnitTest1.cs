@@ -13,7 +13,7 @@ namespace TestTimeLogRecursiveTags
         [TestInitialize]
         public void Init()
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<TimeLogContext>());
+            //Database.SetInitializer(new DropCreateDatabaseAlways<TimeLogContext>());
             //using (var db = new TimeLogContext())
             //{                
             //    db.Database.Initialize(true);                
@@ -99,10 +99,14 @@ namespace TestTimeLogRecursiveTags
                 var userMark = new User() { Name = "Mark" };
                 var userSteve = new User() { Name = "Steve" };
                 var userNia = new User() { Name = "Nia" };
+                var userDave = new User() { Name = "Dave" };
+                var userJules = new User() { Name = "Jules" };
                 db.Users.Add(userJon);
                 db.Users.Add(userMark);
                 db.Users.Add(userSteve);
                 db.Users.Add(userNia);
+                db.Users.Add(userDave);
+                db.Users.Add(userJules);
                 db.SaveChanges();
 
                 var bks = new[] { tdPhase1SpecBookingCode,
@@ -117,12 +121,12 @@ namespace TestTimeLogRecursiveTags
                                   bmoPhase1ImplDownstreamMqBookingCode
                                 };
 
-                var us = new[] { userJon, userMark, userSteve, userNia};
+                var us = new[] { userJon, userMark, userSteve, userNia, userDave};
 
-                for (var i=0; i< 200; i++)
+                for (var i=0; i< 400; i++)
                 {
                     var bk = (i % 10 ) ;
-                    var u = (i % 4) ;
+                    var u = (i % 5) ;
                     var h = (i % 8) ;
 
                     var v = new TimeEntry() {
@@ -141,7 +145,7 @@ namespace TestTimeLogRecursiveTags
                             orderby t.TimeEntryDuration
                             select t;
 
-                Assert.AreEqual(200, query.Count());
+                Assert.AreEqual(400, query.Count());
 
             };
                                    

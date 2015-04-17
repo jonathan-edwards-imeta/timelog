@@ -8,17 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security", "Security\Security.csproj", "{793D4A34-6EEE-44C4-B946-5DDB363244B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UsefulSql", "UsefulSql", "{B0F41EFB-7DFF-4E03-AEEF-10826E5601FE}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OldTimeTracker", "OldTimeTracker", "{68110200-B1A2-4336-8CC6-D38F3B34BB5F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TimeLog", "TimeLog", "{F9BA0F44-3897-49B0-AADA-BDA195EE1017}"
 	ProjectSection(SolutionItems) = preProject
-		ChildTagQueries.sql = ChildTagQueries.sql
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Functions", "Functions", "{158DB1E6-ACAA-4EE2-83F3-ABBC6DCDFA90}"
-	ProjectSection(SolutionItems) = preProject
-		GetChildTags.sql = GetChildTags.sql
+		Database\UsefulSql\ChildTagQueries.sql = Database\UsefulSql\ChildTagQueries.sql
+		Database\UsefulSql\GetChildTags.sql = Database\UsefulSql\GetChildTags.sql
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{C5DC9C59-AD7D-4BD6-A0AB-CAB12CF1E691}"
@@ -26,6 +18,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{3705BE88-EC33-4C8C-81E8-489D7EABEB61}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataService", "DataService\DataService.csproj", "{F484B32C-D02B-4C33-A7A9-209CCD071471}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{58430AC2-5F4D-48F9-81EE-ED99E2E47DAD}"
+	ProjectSection(SolutionItems) = preProject
+		Database\TimeLog.mdf = Database\TimeLog.mdf
+		Database\TimeLog_log.ldf = Database\TimeLog_log.ldf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,8 +56,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{68110200-B1A2-4336-8CC6-D38F3B34BB5F} = {B0F41EFB-7DFF-4E03-AEEF-10826E5601FE}
-		{F9BA0F44-3897-49B0-AADA-BDA195EE1017} = {B0F41EFB-7DFF-4E03-AEEF-10826E5601FE}
-		{158DB1E6-ACAA-4EE2-83F3-ABBC6DCDFA90} = {F9BA0F44-3897-49B0-AADA-BDA195EE1017}
+		{B0F41EFB-7DFF-4E03-AEEF-10826E5601FE} = {58430AC2-5F4D-48F9-81EE-ED99E2E47DAD}
 	EndGlobalSection
 EndGlobal

@@ -18,10 +18,45 @@ namespace Timelog.DataAccess.Repositories
         {
             return db.TimeEntries.FirstOrDefault(p => p.Id == id);
         }
-        public void Add(TimeEntry TimeEntry)
+        public void Add(TimeEntry timeEntry)
         {
-            db.TimeEntries.Add(TimeEntry);
+            db.TimeEntries.Add(timeEntry);
             db.SaveChanges();
+        }
+
+        public TimeEntry Put(TimeEntry timeEntry)
+        {
+            if (timeEntry == null)
+                throw new Exception(string.Format("TimeEntry {0} was not supplied."));
+            
+            var t = GetById(timeEntry.Id);
+
+            if (t == null)
+                throw new Exception(string.Format("TimeEntry with id {0} does not exist.", timeEntry.Id));
+
+            t.BookingCode = timeEntry.BookingCode;
+            t.TimeEntryCreated = timeEntry.TimeEntryCreated;
+            t.TimeEntryCreator = timeEntry.TimeEntryCreator;
+            t.TimeEntryDate = timeEntry.TimeEntryDate;
+            t.TimeEntryDescription = timeEntry.TimeEntryDescription;
+            t.TimeEntryDuration = timeEntry.TimeEntryDuration;
+            t.TimeEntryUser = timeEntry.TimeEntryUser;
+            db.SaveChanges();
+
+            return t;
+        }
+
+        public bool Delete(int id)
+        {
+            var t = GetById(id);
+
+            if (t == null)
+                return false;
+
+            db.TimeEntries.Remove(t);
+            db.SaveChanges();
+
+            return true;
         }
 
         protected void Dispose(bool disposing)
