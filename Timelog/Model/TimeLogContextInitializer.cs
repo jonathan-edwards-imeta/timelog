@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace Timelog.Model
 {
-    public class TimeLogContextInitializer : DropCreateDatabaseAlways<TimeLogContext>
+    public class TimeLogContextInitializer : CreateDatabaseIfNotExists<TimeLogContext>
     {
         protected override void Seed(TimeLogContext context)
         {
