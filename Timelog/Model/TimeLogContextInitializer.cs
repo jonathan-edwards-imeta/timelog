@@ -1,4 +1,8 @@
-﻿using EfEnumToLookup.LookupGenerator;
+﻿//#define SEED_TIME_LOG_ENTRIES
+
+using System;
+using System.Threading.Tasks;
+using EfEnumToLookup.LookupGenerator;
 using System.Data.Entity;
 
 namespace Timelog.Model
@@ -25,6 +29,10 @@ namespace Timelog.Model
 
             SeedImetaUsers(context);
             SeedStandardTagsTagTreesAndBookingCodes(context);
+            
+#if SEED_TIME_LOG_ENTRIES    
+            SeedTimeLogEntries(context);
+#endif
         }
 
         private void SeedImetaUsers(TimeLogContext context)
@@ -126,6 +134,30 @@ namespace Timelog.Model
             context.BookingCodes.Add(bmoPhase1ImplDownstreamMqBookingCode);
             
             context.SaveChanges();
+        }
+
+        private static void SeedTimeLogEntries(TimeLogContext context)
+        {
+            var us = context.Users.ToArrayAsync().GetAwaiter().GetResult();
+            var bks = context.BookingCodes.ToArrayAsync().GetAwaiter().GetResult();
+
+            for (var i = 0; i < 500; i++)
+            {
+                var bk = (i%bks.Length);
+                var u = (i%us.Length);
+                var h = (i%8);
+
+                var v = new TimeEntry()
+                {
+                    TimeEntryDate = DateTime.Now.AddDays(-1*i),
+                    TimeEntryDuration = h,
+                    BookingCode = bks[bk],
+                    TimeEntryUser = us[u],
+                    TimeEntryCreated = DateTime.Now
+                };
+                context.TimeEntries.Add(v);
+                context.SaveChanges();
+            }
         }
     }
 }
