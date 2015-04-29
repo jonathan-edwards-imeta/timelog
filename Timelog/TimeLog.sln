@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.22310.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{B5BC2C8F-A98D-4994-8184-AB29F59CD8A3}"
 EndProject
@@ -24,6 +24,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{58
 		Database\TimeLog.mdf = Database\TimeLog.mdf
 		Database\TimeLog_log.ldf = Database\TimeLog_log.ldf
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D43CCDAA-2F8B-479D-B91C-71777FCD1871}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestData", "TestData\TestData.csproj", "{792D790F-B649-4837-BC11-9A1D39EFF841}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,11 +55,16 @@ Global
 		{F484B32C-D02B-4C33-A7A9-209CCD071471}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F484B32C-D02B-4C33-A7A9-209CCD071471}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F484B32C-D02B-4C33-A7A9-209CCD071471}.Release|Any CPU.Build.0 = Release|Any CPU
+		{792D790F-B649-4837-BC11-9A1D39EFF841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{792D790F-B649-4837-BC11-9A1D39EFF841}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{792D790F-B649-4837-BC11-9A1D39EFF841}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{792D790F-B649-4837-BC11-9A1D39EFF841}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B0F41EFB-7DFF-4E03-AEEF-10826E5601FE} = {58430AC2-5F4D-48F9-81EE-ED99E2E47DAD}
+		{792D790F-B649-4837-BC11-9A1D39EFF841} = {D43CCDAA-2F8B-479D-B91C-71777FCD1871}
 	EndGlobalSection
 EndGlobal

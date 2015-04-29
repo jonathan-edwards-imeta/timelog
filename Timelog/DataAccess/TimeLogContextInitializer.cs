@@ -1,11 +1,12 @@
-﻿//#define SEED_TIME_LOG_ENTRIES
+﻿#define SEED_DATABASE
+//#define SEED_TIME_LOG_ENTRIES
 
 using System;
-using System.Threading.Tasks;
-using EfEnumToLookup.LookupGenerator;
 using System.Data.Entity;
+using EfEnumToLookup.LookupGenerator;
+using Timelog.Model;
 
-namespace Timelog.Model
+namespace Timelog.DataAccess
 {
     public class TimeLogContextInitializer : CreateDatabaseIfNotExists<TimeLogContext>
     {
@@ -27,11 +28,13 @@ namespace Timelog.Model
             var enumToLookup = new EnumToLookup();
             enumToLookup.Apply(context);
 
+#if SEED_DATABASE
             SeedImetaUsers(context);
             SeedStandardTagsTagTreesAndBookingCodes(context);
             
-#if SEED_TIME_LOG_ENTRIES    
+    #if SEED_TIME_LOG_ENTRIES    
             SeedTimeLogEntries(context);
+    #endif
 #endif
         }
 
@@ -109,6 +112,40 @@ namespace Timelog.Model
             var bmoPhase1ImplementationDownStreamTagTree = new TagTree() { Tag = downstreamTag, RelatedTagTree = bmoPhase1ImplementationTagTree };
             var bmoPhase1ImplementationDownStreamMqTagTree = new TagTree() { Tag = mqTag, RelatedTagTree = bmoPhase1ImplementationDownStreamTagTree };
 
+            var twoBolteda = new TagTree() {Tag = bmoTag, RelatedTagTree = tdPhase1ImplementationDownStreamMqTagTree};
+            var twoBoltedb = new TagTree() { Tag = phase1Tag, RelatedTagTree = twoBolteda };
+            var twoBoltedc = new TagTree() { Tag = specTag, RelatedTagTree = twoBoltedb };
+            var twoBoltedd = new TagTree() { Tag = downstreamTag, RelatedTagTree = twoBoltedc };
+            var twoBoltede = new TagTree() { Tag = mqTag, RelatedTagTree = twoBoltedd };
+            var twoBoltedf = new TagTree() { Tag = implTag, RelatedTagTree = twoBoltede };
+
+            context.TagTrees.Add(tdTagTree);
+            context.TagTrees.Add(tdPhase1TagTree);
+            context.TagTrees.Add(tdPhase1SpecTagTree);
+            context.TagTrees.Add(tdPhase1SpecDownStreamTagTree);
+            context.TagTrees.Add(tdPhase1ImplementationTagTree);
+            context.TagTrees.Add(tdPhase1ImplementationDownStreamTagTree);
+            context.TagTrees.Add(tdPhase1ImplementationDownStreamMqTagTree);
+
+            context.TagTrees.Add(bmoTagTree);
+            context.TagTrees.Add(bmoPhase1TagTree);
+            context.TagTrees.Add(bmoPhase1SpecTagTree);
+            context.TagTrees.Add(bmoPhase1SpecDownStreamTagTree);
+            context.TagTrees.Add(bmoPhase1ImplementationTagTree);
+            context.TagTrees.Add(bmoPhase1ImplementationDownStreamTagTree);
+            context.TagTrees.Add(bmoPhase1ImplementationDownStreamMqTagTree);
+
+            context.TagTrees.Add(twoBolteda);
+            context.TagTrees.Add(twoBoltedb);
+            context.TagTrees.Add(twoBoltedc);
+            context.TagTrees.Add(twoBoltedd);
+            context.TagTrees.Add(twoBoltede);
+            context.TagTrees.Add(twoBoltedf);
+            
+            context.SaveChanges();
+
+
+            
             var tdPhase1SpecBookingCode = new BookingCode() { TagTree = tdPhase1SpecTagTree };
             var tdPhase1SpecDownstreamBookingCode = new BookingCode() { TagTree = tdPhase1SpecDownStreamTagTree };
             var tdPhase1ImplBookingCode = new BookingCode() { TagTree = tdPhase1ImplementationTagTree };
@@ -121,6 +158,8 @@ namespace Timelog.Model
             var bmoPhase1ImplDownstreamBookingCode = new BookingCode() { TagTree = bmoPhase1ImplementationDownStreamTagTree };
             var bmoPhase1ImplDownstreamMqBookingCode = new BookingCode() { TagTree = bmoPhase1ImplementationDownStreamMqTagTree };
 
+            var twoBoltedBooking = new BookingCode() {TagTree = twoBoltedf};
+            
             context.BookingCodes.Add(tdPhase1SpecBookingCode);
             context.BookingCodes.Add(tdPhase1SpecDownstreamBookingCode);
             context.BookingCodes.Add(tdPhase1ImplBookingCode);
@@ -132,6 +171,8 @@ namespace Timelog.Model
             context.BookingCodes.Add(bmoPhase1ImplBookingCode);
             context.BookingCodes.Add(bmoPhase1ImplDownstreamBookingCode);
             context.BookingCodes.Add(bmoPhase1ImplDownstreamMqBookingCode);
+
+            context.BookingCodes.Add(twoBoltedBooking);
             
             context.SaveChanges();
         }

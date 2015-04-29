@@ -1,11 +1,8 @@
-namespace Timelog.Model.Migrations
-{
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
+using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Timelog.Model.TimeLogContext>
+namespace Timelog.DataAccess.Migrations
+{
+    internal sealed class Configuration : DbMigrationsConfiguration<TimeLogContext>
     {
         public Configuration()
         {
@@ -13,7 +10,7 @@ namespace Timelog.Model.Migrations
             ContextKey = "Timelog.Model.TimeLogContext";
         }
 
-        protected override void Seed(Timelog.Model.TimeLogContext context)
+        protected override void Seed(TimeLogContext context)
         {
             //  This method will be called after migrating to the latest version.
 

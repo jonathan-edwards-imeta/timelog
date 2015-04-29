@@ -2,7 +2,7 @@
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
-namespace Timelog.Model.Conventions
+namespace Timelog.DataAccess.Conventions
 {
     // Provides a convention for fixing the independent association (IA) foreign key column names.  
     public class ForeignKeyNamingConvention : IStoreModelConvention<AssociationType>

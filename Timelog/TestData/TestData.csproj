@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3705BE88-EC33-4C8C-81E8-489D7EABEB61}</ProjectGuid>
+    <ProjectGuid>{792D790F-B649-4837-BC11-9A1D39EFF841}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Timelog.DataAccess</RootNamespace>
-    <AssemblyName>DataAccess</AssemblyName>
+    <RootNamespace>TestData</RootNamespace>
+    <AssemblyName>TestData</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,11 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EfEnumToLookup, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1fde139e1e56f7c4, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ef-enum-to-lookup.1.6.0\lib\net45\EfEnumToLookup.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
@@ -50,26 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conventions\EnumRenamingConvention.cs" />
-    <Compile Include="Conventions\ForeignKeyNamingConvention.cs" />
-    <Compile Include="Migrations\201504171627100_InitialCreate.cs" />
-    <Compile Include="Migrations\201504171627100_InitialCreate.Designer.cs">
-      <DependentUpon>201504171627100_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="TagsTreesBookingCodes.cs" />
+    <Compile Include="Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\BookingCodeRepository.cs" />
-    <Compile Include="QueryExtensions.cs" />
-    <Compile Include="Repositories\TimeEntryRepository.cs" />
-    <Compile Include="Repositories\TagTreeRepository.cs" />
-    <Compile Include="Repositories\TagRepository.cs" />
-    <Compile Include="TimeLogContext.cs" />
-    <Compile Include="TimeLogContextInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataService\DataService.csproj">
-      <Project>{f484b32c-d02b-4c33-a7a9-209ccd071471}</Project>
-      <Name>DataService</Name>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{3705be88-ec33-4c8c-81e8-489d7eabeb61}</Project>
+      <Name>DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{b5bc2c8f-a98d-4994-8184-ab29f59cd8a3}</Project>
@@ -79,11 +64,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504171627100_InitialCreate.resx">
-      <DependentUpon>201504171627100_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
