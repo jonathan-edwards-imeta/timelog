@@ -7,11 +7,11 @@ namespace Timelog.TestData
 
     public class TagsTagTreesBookingCodes
     {
-        public static List<Tag> Tags { get; }
+        public static List<Tag> Tags { get; private set; }
 
-        public static List<TagTree> TagTrees { get; }
+        public static List<TagTree> TagTrees { get; private set; }
 
-        public static List<BookingCode> BookingCodes { get; }
+        public static List<BookingCode> BookingCodes { get; private set; }
 
         static TagsTagTreesBookingCodes()
         {

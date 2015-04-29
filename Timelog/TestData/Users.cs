@@ -6,7 +6,7 @@ namespace Timelog.TestData
 {
     public static class Users
     {
-        public static List<User> IMetaUsers { get; }
+        public static List<User> IMetaUsers { get; private set; }
 
         static Users()
         {
