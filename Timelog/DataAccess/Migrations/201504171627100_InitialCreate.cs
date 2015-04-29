@@ -1,8 +1,7 @@
-namespace Timelog.Model.Migrations
+using System.Data.Entity.Migrations;
+
+namespace Timelog.DataAccess.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
     public partial class InitialCreate : DbMigration
     {
         public override void Up()

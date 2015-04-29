@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-
-namespace Timelog.Model
+﻿namespace Timelog.Model
 {
     public class TagTree
     {
@@ -14,15 +8,30 @@ namespace Timelog.Model
         
         public Tag Tag { get; set; }
 
+
+        //ToString()?
         public string TagTreePath
         {
-            get
+            get { return BuildTagTreePath().TrimEnd('-'); }
+        }
+
+        internal string BuildTagTreePath()
+        {
+            var result = string.Empty;
+            const string separator = "-";
+
+            if (Tag != null)
             {
-                string t = Tag.Text;
-                t += "-";
-                t += RelatedTagTree.TagTreePath;
-                return t;
+                if (RelatedTagTree != null)
+                {
+                    result += RelatedTagTree.BuildTagTreePath();
+                }
+
+                result += Tag.Text;
+                result += separator;
             }
+
+            return result;
         }
     }
 }
