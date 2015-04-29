@@ -1,105 +1,27 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Timelog.DataAccess;
 using Timelog.Model;
 
-namespace TestData
+namespace Timelog.TestData
 {
     //Eventually all Test data will return its self.
 
-    ///// <summary>
-    ///// Work in Progress
-    ///// </summary>
-    //public class Tags
-    //{
-    //    public IEnumerable<Tag> Seed(TimeLogContext context)
-    //    {
-    //        IList<Tag> tags = new List<Tag>()
-    //        {
-    //            new Tag() {Text = "Lloyds", TagType = TagType.Customer},
-    //            new Tag() {Text = "Barcap", TagType = TagType.Customer},
-    //            new Tag() {Text = "Credit Suisse", TagType = TagType.Customer},
-    //            new Tag() {Text = "HSBC", TagType = TagType.Customer},
-    //            new Tag() {Text = "SCB", TagType = TagType.Customer},
-
-    //            new Tag() {Text = "BMO", TagType = TagType.Customer},
-    //            new Tag() {Text = "TD", TagType = TagType.Customer},
-    //            new Tag() {Text = "Phase1", TagType = TagType.Phase},
-    //            new Tag() {Text = "Spec", TagType = TagType.Project},
-    //            new Tag() {Text = "Implementation", TagType = TagType.Project},
-    //            new Tag() {Text = "Downstream", TagType = TagType.Task},
-    //            new Tag() {Text = "Mq", TagType = TagType.SubTask}
-    //        };
-
-    //        foreach (var tag in tags)
-    //        {
-    //            context.Tags.Add(tag);    
-    //        }
-            
-    //        context.SaveChanges();
-
-    //        return tags;
-    //    }
-    //}
-
-    ///// <summary>
-    ///// Work in Progress
-    ///// </summary>
-    //public class TagTrees
-    //{
-    //    public IEnumerable<TagTree> Seed(TimeLogContext context, IEnumerable<Tag> tags )
-    //    {
-    //        var tdTagTree = new TagTree() { Tag = tags.FirstOrDefault(x=>x.Text=="TD")};
-    //        var tdPhase1TagTree = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "Phase1"), RelatedTagTree = tdTagTree };
-    //        var tdPhase1SpecTagTree = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "Spec"), RelatedTagTree = tdPhase1TagTree };
-    //        var tdPhase1SpecDownStreamTagTree = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "Downstream"), RelatedTagTree = tdPhase1SpecTagTree };
-    //        var tdPhase1ImplementationTagTree = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "Implementation"), RelatedTagTree = tdPhase1TagTree };
-    //        var tdPhase1ImplementationDownStreamTagTree = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "Downstream"), RelatedTagTree = tdPhase1ImplementationTagTree };
-    //        var tdPhase1ImplementationDownStreamMqTagTree = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "Mq"), RelatedTagTree = tdPhase1ImplementationDownStreamTagTree };
-
-    //        var bmoTagTree = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "BMO") };
-    //        var bmoPhase1TagTree = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "Phase1"), RelatedTagTree = bmoTagTree };
-    //        var bmoPhase1SpecTagTree = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "Spec"), RelatedTagTree = bmoPhase1TagTree };
-    //        var bmoPhase1SpecDownStreamTagTree = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "Downstream"), RelatedTagTree = bmoPhase1SpecTagTree };
-    //        var bmoPhase1ImplementationTagTree = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "Implementation"), RelatedTagTree = bmoPhase1TagTree };
-    //        var bmoPhase1ImplementationDownStreamTagTree = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "Downstream"), RelatedTagTree = bmoPhase1ImplementationTagTree };
-    //        var bmoPhase1ImplementationDownStreamMqTagTree = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "Mq"), RelatedTagTree = bmoPhase1ImplementationDownStreamTagTree };
-
-    //        var twoBolteda = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "BMO"), RelatedTagTree = tdPhase1ImplementationDownStreamMqTagTree };
-    //        var twoBoltedb = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "Phase1"), RelatedTagTree = twoBolteda };
-    //        var twoBoltedc = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "Spec"), RelatedTagTree = twoBoltedb };
-    //        var twoBoltedd = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "Downstream"), RelatedTagTree = twoBoltedc };
-    //        var twoBoltede = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "Mq"), RelatedTagTree = twoBoltedd };
-    //        var twoBoltedf = new TagTree() { Tag = tags.FirstOrDefault(x => x.Text == "Implementation"), RelatedTagTree = twoBoltede };
-
-    //        IList<TagTree> tagTrees = new List<TagTree>()
-    //        { tdTagTree, tdPhase1TagTree, tdPhase1SpecTagTree, tdPhase1SpecDownStreamTagTree, tdPhase1ImplementationTagTree, 
-    //            tdPhase1ImplementationDownStreamTagTree, tdPhase1ImplementationDownStreamMqTagTree, 
-                
-    //            bmoTagTree, bmoPhase1TagTree, bmoPhase1SpecTagTree, bmoPhase1SpecDownStreamTagTree, bmoPhase1ImplementationTagTree, 
-    //            bmoPhase1ImplementationDownStreamTagTree, bmoPhase1ImplementationDownStreamMqTagTree,
-
-    //            twoBolteda, twoBoltedb, twoBoltedc, twoBoltedd, twoBoltede, twoBoltedf
-    //        };
-
-    //        foreach (var tagTree in tagTrees)
-    //        {
-    //            context.TagTrees.Add(tagTree);
-    //        }
-
-    //        context.SaveChanges();
-
-    //        return tagTrees;
-    //    }
-    //}
-
-
-
-
     public class TagsTagTreesBookingCodes
     {
-        public void Seed(TimeLogContext context)
+        public static List<Tag> Tags { get; }
+
+        public static List<TagTree> TagTrees { get; }
+
+        public static List<BookingCode> BookingCodes { get; }
+
+        static TagsTagTreesBookingCodes()
         {
+            if (Tags != null && TagTrees != null && BookingCodes != null)
+                return;
+
+            Tags = new List<Tag>();
+            TagTrees = new List<TagTree>();
+            BookingCodes = new List<BookingCode>();
+
             var lloydsTag = new Tag() {Text = "Lloyds", TagType = TagType.Customer};
             var barcapTag = new Tag() {Text = "Barcap", TagType = TagType.Customer};
             var creditSuisseTag = new Tag() {Text = "Credit Suisse", TagType = TagType.Customer};
@@ -114,20 +36,19 @@ namespace TestData
             var downstreamTag = new Tag() {Text = "Downstream", TagType = TagType.Task};
             var mqTag = new Tag() { Text = "Mq", TagType = TagType.SubTask };
 
-            context.Tags.Add(lloydsTag);
-            context.Tags.Add(barcapTag);
-            context.Tags.Add(creditSuisseTag);
-            context.Tags.Add(hsbcTag);
-            context.Tags.Add(scbTag);
-            context.Tags.Add(bmoTag);
-            context.Tags.Add(tdTag);
-            context.Tags.Add(phase1Tag);
-            context.Tags.Add(specTag);
-            context.Tags.Add(implTag);
-            context.Tags.Add(downstreamTag);
-            context.Tags.Add(mqTag);
-            context.SaveChanges();
-
+            Tags.Add(lloydsTag);
+            Tags.Add(barcapTag);
+            Tags.Add(creditSuisseTag);
+            Tags.Add(hsbcTag);
+            Tags.Add(scbTag);
+            Tags.Add(bmoTag);
+            Tags.Add(tdTag);
+            Tags.Add(phase1Tag);
+            Tags.Add(specTag);
+            Tags.Add(implTag);
+            Tags.Add(downstreamTag);
+            Tags.Add(mqTag);
+            
             var tdTagTree = new TagTree() { Tag = tdTag };
             var tdPhase1TagTree = new TagTree() { Tag = phase1Tag, RelatedTagTree = tdTagTree };
             var tdPhase1SpecTagTree = new TagTree() { Tag = specTag, RelatedTagTree = tdPhase1TagTree };
@@ -151,33 +72,29 @@ namespace TestData
             var twoBoltede = new TagTree() { Tag = mqTag, RelatedTagTree = twoBoltedd };
             var twoBoltedf = new TagTree() { Tag = implTag, RelatedTagTree = twoBoltede };
 
-            context.TagTrees.Add(tdTagTree);
-            context.TagTrees.Add(tdPhase1TagTree);
-            context.TagTrees.Add(tdPhase1SpecTagTree);
-            context.TagTrees.Add(tdPhase1SpecDownStreamTagTree);
-            context.TagTrees.Add(tdPhase1ImplementationTagTree);
-            context.TagTrees.Add(tdPhase1ImplementationDownStreamTagTree);
-            context.TagTrees.Add(tdPhase1ImplementationDownStreamMqTagTree);
+            TagTrees.Add(tdTagTree);
+            TagTrees.Add(tdPhase1TagTree);
+            TagTrees.Add(tdPhase1SpecTagTree);
+            TagTrees.Add(tdPhase1SpecDownStreamTagTree);
+            TagTrees.Add(tdPhase1ImplementationTagTree);
+            TagTrees.Add(tdPhase1ImplementationDownStreamTagTree);
+            TagTrees.Add(tdPhase1ImplementationDownStreamMqTagTree);
 
-            context.TagTrees.Add(bmoTagTree);
-            context.TagTrees.Add(bmoPhase1TagTree);
-            context.TagTrees.Add(bmoPhase1SpecTagTree);
-            context.TagTrees.Add(bmoPhase1SpecDownStreamTagTree);
-            context.TagTrees.Add(bmoPhase1ImplementationTagTree);
-            context.TagTrees.Add(bmoPhase1ImplementationDownStreamTagTree);
-            context.TagTrees.Add(bmoPhase1ImplementationDownStreamMqTagTree);
+            TagTrees.Add(bmoTagTree);
+            TagTrees.Add(bmoPhase1TagTree);
+            TagTrees.Add(bmoPhase1SpecTagTree);
+            TagTrees.Add(bmoPhase1SpecDownStreamTagTree);
+            TagTrees.Add(bmoPhase1ImplementationTagTree);
+            TagTrees.Add(bmoPhase1ImplementationDownStreamTagTree);
+            TagTrees.Add(bmoPhase1ImplementationDownStreamMqTagTree);
 
-            context.TagTrees.Add(twoBolteda);
-            context.TagTrees.Add(twoBoltedb);
-            context.TagTrees.Add(twoBoltedc);
-            context.TagTrees.Add(twoBoltedd);
-            context.TagTrees.Add(twoBoltede);
-            context.TagTrees.Add(twoBoltedf);
-
-            context.SaveChanges();
-
-
-
+            TagTrees.Add(twoBolteda);
+            TagTrees.Add(twoBoltedb);
+            TagTrees.Add(twoBoltedc);
+            TagTrees.Add(twoBoltedd);
+            TagTrees.Add(twoBoltede);
+            TagTrees.Add(twoBoltedf);
+            
             var tdPhase1SpecBookingCode = new BookingCode() { TagTree = tdPhase1SpecTagTree };
             var tdPhase1SpecDownstreamBookingCode = new BookingCode() { TagTree = tdPhase1SpecDownStreamTagTree };
             var tdPhase1ImplBookingCode = new BookingCode() { TagTree = tdPhase1ImplementationTagTree };
@@ -192,21 +109,19 @@ namespace TestData
 
             var twoBoltedBooking = new BookingCode() { TagTree = twoBoltedf };
 
-            context.BookingCodes.Add(tdPhase1SpecBookingCode);
-            context.BookingCodes.Add(tdPhase1SpecDownstreamBookingCode);
-            context.BookingCodes.Add(tdPhase1ImplBookingCode);
-            context.BookingCodes.Add(tdPhase1ImplDownstreamBookingCode);
-            context.BookingCodes.Add(tdPhase1ImplDownstreamMqBookingCode);
+            BookingCodes.Add(tdPhase1SpecBookingCode);
+            BookingCodes.Add(tdPhase1SpecDownstreamBookingCode);
+            BookingCodes.Add(tdPhase1ImplBookingCode);
+            BookingCodes.Add(tdPhase1ImplDownstreamBookingCode);
+            BookingCodes.Add(tdPhase1ImplDownstreamMqBookingCode);
 
-            context.BookingCodes.Add(bmoPhase1SpecBookingCode);
-            context.BookingCodes.Add(bmoPhase1SpecDownstreamBookingCode);
-            context.BookingCodes.Add(bmoPhase1ImplBookingCode);
-            context.BookingCodes.Add(bmoPhase1ImplDownstreamBookingCode);
-            context.BookingCodes.Add(bmoPhase1ImplDownstreamMqBookingCode);
+            BookingCodes.Add(bmoPhase1SpecBookingCode);
+            BookingCodes.Add(bmoPhase1SpecDownstreamBookingCode);
+            BookingCodes.Add(bmoPhase1ImplBookingCode);
+            BookingCodes.Add(bmoPhase1ImplDownstreamBookingCode);
+            BookingCodes.Add(bmoPhase1ImplDownstreamMqBookingCode);
 
-            context.BookingCodes.Add(twoBoltedBooking);
-
-            context.SaveChanges();
+            BookingCodes.Add(twoBoltedBooking);                       
         }
     }
 }

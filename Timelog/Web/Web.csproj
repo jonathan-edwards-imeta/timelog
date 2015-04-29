@@ -124,6 +124,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common\Common.csproj">
+      <Project>{7b6c3dd3-6a87-49a8-a907-165aff8e66bc}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{3705be88-ec33-4c8c-81e8-489d7eabeb61}</Project>
       <Name>DataAccess</Name>
@@ -135,6 +139,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{b5bc2c8f-a98d-4994-8184-ab29f59cd8a3}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestData\TestData.csproj">
+      <Project>{792d790f-b649-4837-bc11-9a1d39eff841}</Project>
+      <Name>TestData</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

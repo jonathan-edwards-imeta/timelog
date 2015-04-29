@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Practices.Unity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Timelog.DataService.Interface;
@@ -8,30 +9,37 @@ namespace Timelog.DataAccess.Repositories
 {
     public class TagRepository : ITagRepository, IDisposable
     {
-        private TimeLogContext db = new TimeLogContext();
+        private IUnityContainer _unityContainer;
+        private TimeLogContext _db;
+
+        public TagRepository(IUnityContainer unityContainer, TimeLogContext db)
+        {
+            _unityContainer = unityContainer;
+            _db = db;
+        }
 
         public IEnumerable<Tag> GetAll()
         {
-            return db.Tags;
+            return _db.Tags;
         }
         public Tag GetById(int id)
         {
-            return db.Tags.FirstOrDefault(p => p.Id == id);
+            return _db.Tags.FirstOrDefault(p => p.Id == id);
         }
         public void Add(Tag tag)
         {
-            db.Tags.Add(tag);
-            db.SaveChanges();
+            _db.Tags.Add(tag);
+            _db.SaveChanges();
         }
 
         protected void Dispose(bool disposing)
         {
             if (disposing)
             {
-                if (db != null)
+                if (_db != null)
                 {
-                    db.Dispose();
-                    db = null;
+                    _db.Dispose();
+                    _db = null;
                 }
             }
         }

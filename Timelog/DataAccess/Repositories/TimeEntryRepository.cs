@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Practices.Unity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Timelog.DataService.Interface;
@@ -8,20 +9,27 @@ namespace Timelog.DataAccess.Repositories
 {
     public class TimeEntryRepository : ITimeEntryRepository, IDisposable
     {
-        private TimeLogContext db = new TimeLogContext();
+        private IUnityContainer _unityContainer;
+        private TimeLogContext _db;
+
+        public TimeEntryRepository(IUnityContainer unityContainer, TimeLogContext db)
+        {
+            _unityContainer = unityContainer;
+            _db = db;
+        }
 
         public IEnumerable<TimeEntry> GetAll()
         {
-            return db.TimeEntries;
+            return _db.TimeEntries;
         }
         public TimeEntry GetById(int id)
         {
-            return db.TimeEntries.FirstOrDefault(p => p.Id == id);
+            return _db.TimeEntries.FirstOrDefault(p => p.Id == id);
         }
         public void Add(TimeEntry timeEntry)
         {
-            db.TimeEntries.Add(timeEntry);
-            db.SaveChanges();
+            _db.TimeEntries.Add(timeEntry);
+            _db.SaveChanges();
         }
 
         public TimeEntry Put(TimeEntry timeEntry)
@@ -41,7 +49,7 @@ namespace Timelog.DataAccess.Repositories
             t.TimeEntryDescription = timeEntry.TimeEntryDescription;
             t.TimeEntryDuration = timeEntry.TimeEntryDuration;
             t.TimeEntryUser = timeEntry.TimeEntryUser;
-            db.SaveChanges();
+            _db.SaveChanges();
 
             return t;
         }
@@ -53,8 +61,8 @@ namespace Timelog.DataAccess.Repositories
             if (t == null)
                 return false;
 
-            db.TimeEntries.Remove(t);
-            db.SaveChanges();
+            _db.TimeEntries.Remove(t);
+            _db.SaveChanges();
 
             return true;
         }
@@ -63,10 +71,10 @@ namespace Timelog.DataAccess.Repositories
         {
             if (disposing)
             {
-                if (db != null)
+                if (_db != null)
                 {
-                    db.Dispose();
-                    db = null;
+                    _db.Dispose();
+                    _db = null;
                 }
             }
         }

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Microsoft.Practices.Unity;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Timelog.DataService.Interface;
 using Timelog.Model;
@@ -9,11 +9,18 @@ namespace Timelog.DataAccess.Repositories
 {
     public class TagTreeRepository : ITagTreeRepository, IDisposable
     {
-        private TimeLogContext db = new TimeLogContext();
+        private IUnityContainer _unityContainer;
+        private TimeLogContext _db;
+
+        public TagTreeRepository(IUnityContainer unityContainer, TimeLogContext db)
+        {
+            _unityContainer = unityContainer;
+            _db = db;
+        }
 
         private IEnumerable<TagTree> GetAllInternal()
         {
-            var result = db.TagTrees.IncludeMultiple(x => x.Tag, y => y.RelatedTagTree);
+            var result = _db.TagTrees.IncludeMultiple(x => x.Tag, y => y.RelatedTagTree);
             //foreach (var tagTree in result)
             //{
             //    var related = tagTree.RelatedTagTree;
@@ -61,18 +68,18 @@ namespace Timelog.DataAccess.Repositories
 
         public void Add(TagTree tagTree)
         {
-            db.TagTrees.Add(tagTree);
-            db.SaveChanges();
+            _db.TagTrees.Add(tagTree);
+            _db.SaveChanges();
         }
 
         protected void Dispose(bool disposing)
         {
             if (disposing)
             {
-                if (db != null)
+                if (_db != null)
                 {
-                    db.Dispose();
-                    db = null;
+                    _db.Dispose();
+                    _db = null;
                 }
             }
         }

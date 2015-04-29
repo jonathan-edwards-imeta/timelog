@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Microsoft.Practices.Unity;
+using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using Timelog.DataService.Interface;
 using Timelog.Model;
@@ -9,7 +9,14 @@ namespace Timelog.DataAccess.Repositories
 {
     public class BookingCodeRepository : IBookingCodeRepository, IDisposable
     {
-        private TimeLogContext db = new TimeLogContext();
+        private IUnityContainer _unityContainer;
+        private TimeLogContext _db; 
+
+        public BookingCodeRepository(IUnityContainer unityContainer, TimeLogContext db)
+        {
+            _unityContainer = unityContainer;
+            _db = db;
+        }
 
         private IEnumerable<BookingCode> GetAllInternal()
         {
@@ -27,7 +34,7 @@ namespace Timelog.DataAccess.Repositories
             //var result = db.Database.SqlQuery<BookingCode>("select * from cfGetChildTags(null) cf join tag t on t.Id = cf.tagId join bookingCode bc on bc.TagTreeId = cf.id");
 
 
-            var result = db.BookingCodes.IncludeMultiple(x => x.TagTree, y => y.TagTree.Tag, z => z.TagTree.RelatedTagTree, a => a.TagTree.RelatedTagTree.Tag, b => b.TagTree.RelatedTagTree.RelatedTagTree, c => c.TagTree.RelatedTagTree.RelatedTagTree.Tag, d => d.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, e => e.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag, f => f.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, g => g.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag
+            var result = _db.BookingCodes.IncludeMultiple(x => x.TagTree, y => y.TagTree.Tag, z => z.TagTree.RelatedTagTree, a => a.TagTree.RelatedTagTree.Tag, b => b.TagTree.RelatedTagTree.RelatedTagTree, c => c.TagTree.RelatedTagTree.RelatedTagTree.Tag, d => d.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, e => e.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag, f => f.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, g => g.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag
                 , h => h.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, i => i.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag
                 , j => j.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, k => k.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag
                 , l => l.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, m => m.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag
@@ -57,18 +64,18 @@ namespace Timelog.DataAccess.Repositories
 
         public void Add(BookingCode BookingCode)
         {
-            db.BookingCodes.Add(BookingCode);
-            db.SaveChanges();
+            _db.BookingCodes.Add(BookingCode);
+            _db.SaveChanges();
         }
 
         protected void Dispose(bool disposing)
         {
             if (disposing)
             {
-                if (db != null)
+                if (_db != null)
                 {
-                    db.Dispose();
-                    db = null;
+                    _db.Dispose();
+                    _db = null;
                 }
             }
         }

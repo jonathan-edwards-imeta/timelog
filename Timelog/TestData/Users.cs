@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Timelog.DataAccess;
 using Timelog.Model;
 
-namespace TestData
+namespace Timelog.TestData
 {
-    public class Users
+    public static class Users
     {
-        public IEnumerable<User> Seed(TimeLogContext context)
+        public static List<User> IMetaUsers { get; }
+
+        static Users()
         {
-            IList<User> users = new List<User>()
+            if (IMetaUsers != null )
+                return;
+            IMetaUsers = new List<User>()
             {
                 new User() {Name = "Jonathan"},
                 new User() {Name = "Steve"},
@@ -32,14 +35,6 @@ namespace TestData
                 new User() {Name = " Michael E"}
             };
 
-            foreach (var user in users)
-            {
-                context.Users.Add(user);
-            }
-
-            context.SaveChanges();
-
-            return users;
-        }
+        }       
     }
 }
