@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Timelog.Model;
+using Timelog.TestData.Properties;
 
 namespace Timelog.TestData
 {
@@ -8,8 +9,10 @@ namespace Timelog.TestData
     {
         public static IEnumerable<TimeEntry> TimeBookings { get; private set; }
 
-        public static void BuildTimeBookings(int volume)
+        static TimeEntries()
         {
+            var volume = Settings.Default.TimeEntriesToCreate;
+
             var timeEntries = new List<TimeEntry>();
 
             for (var i = 0; i < volume; i++)

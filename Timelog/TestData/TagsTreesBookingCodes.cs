@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Timelog.Model;
+using Timelog.TestData.Properties;
 
 namespace Timelog.TestData
 {
@@ -21,6 +22,9 @@ namespace Timelog.TestData
             Tags = new List<Tag>();
             TagTrees = new List<TagTree>();
             BookingCodes = new List<BookingCode>();
+
+            if (!Settings.Default.CreateTags)
+                return;
 
             var lloydsTag = new Tag() {Text = "Lloyds", TagType = TagType.Customer};
             var barcapTag = new Tag() {Text = "Barcap", TagType = TagType.Customer};
@@ -48,7 +52,10 @@ namespace Timelog.TestData
             Tags.Add(implTag);
             Tags.Add(downstreamTag);
             Tags.Add(mqTag);
-            
+
+            if (!Settings.Default.CreateTagTrees)
+                return;
+
             var tdTagTree = new TagTree() { Tag = tdTag };
             var tdPhase1TagTree = new TagTree() { Tag = phase1Tag, RelatedTagTree = tdTagTree };
             var tdPhase1SpecTagTree = new TagTree() { Tag = specTag, RelatedTagTree = tdPhase1TagTree };
@@ -94,7 +101,10 @@ namespace Timelog.TestData
             TagTrees.Add(twoBoltedd);
             TagTrees.Add(twoBoltede);
             TagTrees.Add(twoBoltedf);
-            
+
+            if (!Settings.Default.CreateBookingCodes)
+                return;
+
             var tdPhase1SpecBookingCode = new BookingCode() { TagTree = tdPhase1SpecTagTree };
             var tdPhase1SpecDownstreamBookingCode = new BookingCode() { TagTree = tdPhase1SpecDownStreamTagTree };
             var tdPhase1ImplBookingCode = new BookingCode() { TagTree = tdPhase1ImplementationTagTree };
@@ -121,7 +131,7 @@ namespace Timelog.TestData
             BookingCodes.Add(bmoPhase1ImplDownstreamBookingCode);
             BookingCodes.Add(bmoPhase1ImplDownstreamMqBookingCode);
 
-            BookingCodes.Add(twoBoltedBooking);                       
+            BookingCodes.Add(twoBoltedBooking);                  
         }
     }
 }

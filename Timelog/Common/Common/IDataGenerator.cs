@@ -13,7 +13,6 @@ namespace Timelog.Common
 
         void GenerateBookingCodes();
 
-        void GenerateTimeEntries(int volume);
-
+        void GenerateTimeEntries();
     }
 }

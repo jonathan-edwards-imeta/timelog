@@ -8,12 +8,11 @@ using Timelog.Common;
 
 namespace Timelog.DataAccess
 {
-    public class TimeLogContextInitializer : CreateDatabaseIfNotExists<TimeLogContext>
-                                            //DropCreateDatabaseAlways<TimeLogContext>
+    public class TimeLogContextCreateDatabaseIfNotExistsInitializer : CreateDatabaseIfNotExists<TimeLogContext>, ITimeLogContextInitializer
     {
 
         private IUnityContainer _unityContainer;
-        public TimeLogContextInitializer(IUnityContainer unityContainer) : base()
+        public TimeLogContextCreateDatabaseIfNotExistsInitializer(IUnityContainer unityContainer) : base()
         {
             _unityContainer = unityContainer;
         }
@@ -26,17 +25,12 @@ namespace Timelog.DataAccess
             var enumToLookup = new EnumToLookup();
             enumToLookup.Apply(context);
 
-        #if SEED_DATABASE
             var generator = _unityContainer.Resolve<IDataGenerator>();
             generator.GenerateUsers();
             generator.GenerateTags();
             generator.GenerateTagTrees();
-            generator.GenerateBookingCodes();
-
-            #if SEED_TIME_LOG_ENTRIES
-                generator.GenerateTimeEntries(500);
-            #endif
-        #endif
+            generator.GenerateBookingCodes();            
+            generator.GenerateTimeEntries();           
         }
 
     }

@@ -31,9 +31,8 @@ namespace Timelog.TestData
             _dataSeeder.SeedTagTrees(TagsTagTreesBookingCodes.TagTrees);
         }
 
-        public void GenerateTimeEntries(int volume)
-        {
-            TimeEntries.BuildTimeBookings(volume);
+        public void GenerateTimeEntries()
+        {            
             _dataSeeder.SeedTimeEntries(TimeEntries.TimeBookings);
         }
 

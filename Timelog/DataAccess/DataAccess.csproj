@@ -63,6 +63,7 @@
     <Compile Include="Conventions\EnumRenamingConvention.cs" />
     <Compile Include="Conventions\ForeignKeyNamingConvention.cs" />
     <Compile Include="DataSeeder.cs" />
+    <Compile Include="ITimeLogContextInitializer.cs" />
     <Compile Include="Migrations\201504171627100_InitialCreate.cs" />
     <Compile Include="Migrations\201504171627100_InitialCreate.Designer.cs">
       <DependentUpon>201504171627100_InitialCreate.cs</DependentUpon>
@@ -75,7 +76,8 @@
     <Compile Include="Repositories\TagTreeRepository.cs" />
     <Compile Include="Repositories\TagRepository.cs" />
     <Compile Include="TimeLogContext.cs" />
-    <Compile Include="TimeLogContextInitializer.cs" />
+    <Compile Include="TimeLogContextDropCreateDatabaseAlwaysInitializer.cs" />
+    <Compile Include="TimeLogContextCreateDatabaseIfNotExistsInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common\Common.csproj">

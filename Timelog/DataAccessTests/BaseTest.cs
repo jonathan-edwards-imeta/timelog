@@ -15,10 +15,9 @@ namespace TimeLog.DataAccessTests
         {
             Container = new UnityContainer();
             Container.RegisterType<TimeLogContext, TimeLogContext>();
+            Container.RegisterType<ITimeLogContextInitializer, TimeLogContextDropCreateDatabaseAlwaysInitializer>();
             Container.RegisterType<IDataSeeder, DataSeeder>();
             Container.RegisterType<IDataGenerator, DataGenerator>();
-
-            TimeEntries.BuildTimeBookings(500);
         }
     }
 }

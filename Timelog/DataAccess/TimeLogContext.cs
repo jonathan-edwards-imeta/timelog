@@ -10,7 +10,8 @@ namespace Timelog.DataAccess
     {
         public TimeLogContext(IUnityContainer unityContainer) : base()
         {
-            Database.SetInitializer(new TimeLogContextInitializer(unityContainer));           
+            var contextInitializer = unityContainer.Resolve<ITimeLogContextInitializer>();
+            Database.SetInitializer(contextInitializer);           
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

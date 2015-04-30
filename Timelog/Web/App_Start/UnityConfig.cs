@@ -16,6 +16,8 @@ namespace Web
 			var container = new UnityContainer();
 
             container.RegisterType<TimeLogContext, TimeLogContext>();
+            container.RegisterType<ITimeLogContextInitializer, TimeLogContextCreateDatabaseIfNotExistsInitializer>();
+            //container.RegisterType<ITimeLogContextInitializer, TimeLogContextDropCreateDatabaseAlwaysInitializer>();
 
             container.RegisterType<IDataSeeder, DataSeeder>();
             container.RegisterType<IDataGenerator, DataGenerator>();           
