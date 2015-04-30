@@ -10,6 +10,8 @@ namespace TimeLog.DataAccessTests
     [TestFixture]
     public class TimeEntryTests : BaseTest
     {
+        [TestCase(200)]
+        [TestCase(11)]
         [TestCase(1)]
         public void GetTimeEntryFromTheRepositoryReturnsValidTimeEntry(int id)
         {

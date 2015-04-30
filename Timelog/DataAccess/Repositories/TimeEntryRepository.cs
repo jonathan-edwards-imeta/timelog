@@ -18,14 +18,32 @@ namespace Timelog.DataAccess.Repositories
             _db = db;
         }
 
+        private IEnumerable<TimeEntry> GetAllInternal()
+        {
+            var result = _db.TimeEntries.IncludeMultiple(xx => xx.BookingCode, x => x.BookingCode.TagTree, y => y.BookingCode.TagTree.Tag, z => z.BookingCode.TagTree.RelatedTagTree, a => a.BookingCode.TagTree.RelatedTagTree.Tag, b => b.BookingCode.TagTree.RelatedTagTree.RelatedTagTree, c => c.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.Tag, d => d.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, e => e.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag, f => f.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, g => g.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag
+                , h => h.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, i => i.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag
+                , j => j.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, k => k.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag
+                , l => l.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, m => m.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag
+                );
+
+            return result;
+        }
+
+
         public IEnumerable<TimeEntry> GetAll()
         {
-            return _db.TimeEntries;
+            //return db.BookingCodes.Include(x=>x.TagTree);
+            var result = GetAllInternal();
+            return result;
         }
+
         public TimeEntry GetById(int id)
         {
-            return _db.TimeEntries.FirstOrDefault(p => p.Id == id);
+             var result = GetAllInternal();
+
+            return result.FirstOrDefault(x => x.Id == id);
         }
+
         public void Add(TimeEntry timeEntry)
         {
             _db.TimeEntries.Add(timeEntry);

@@ -17,6 +17,8 @@ namespace TimeLog.DataAccessTests
             Container.RegisterType<TimeLogContext, TimeLogContext>();
             Container.RegisterType<IDataSeeder, DataSeeder>();
             Container.RegisterType<IDataGenerator, DataGenerator>();
+
+            TimeEntries.BuildTimeBookings(500);
         }
     }
 }
