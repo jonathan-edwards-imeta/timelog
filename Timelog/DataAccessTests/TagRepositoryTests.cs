@@ -2,7 +2,6 @@
 using NUnit.Framework;
 using System;
 using System.Linq;
-using Timelog.Common;
 using Timelog.DataAccess;
 using Timelog.DataAccess.Repositories;
 using Timelog.TestData;
@@ -10,23 +9,12 @@ using Timelog.TestData;
 namespace TimeLog.DataAccessTests
 {
     [TestFixture]
-    public class TagRepositoryTests
+    public class TagRepositoryTests : BaseTest
     {
-        private UnityContainer _container;
-
-        [SetUp]
-        public void Setup()
-        {
-            _container = new UnityContainer();
-            _container.RegisterType<TimeLogContext, TimeLogContext>();
-            _container.RegisterType<IDataSeeder, DataSeeder>();
-            _container.RegisterType<IDataGenerator, DataGenerator>();
-        }
-
         [Test]
         public void GetAllTagsFromTheRepositoryReturnsAllTags()
         {
-            var tr = new TagRepository(_container, _container.Resolve<TimeLogContext>());
+            var tr = new TagRepository(Container, Container.Resolve<TimeLogContext>());
             var allRepositoryTags = tr.GetAll().ToList();
 
             Assert.AreEqual(TagsTagTreesBookingCodes.Tags.Count(), allRepositoryTags.Count());

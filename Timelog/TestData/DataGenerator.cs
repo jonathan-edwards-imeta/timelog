@@ -33,7 +33,7 @@ namespace Timelog.TestData
 
         public void GenerateTimeEntries(int volume)
         {
-            TimeEntries.Volume = volume;
+            TimeEntries.BuildTimeBookings(volume);
             _dataSeeder.SeedTimeEntries(TimeEntries.TimeBookings);
         }
 

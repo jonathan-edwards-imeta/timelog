@@ -67,8 +67,11 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="BaseTest.cs" />
     <Compile Include="TagRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TagTreeRepositoryTests.cs" />
+    <Compile Include="TimeEntryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
