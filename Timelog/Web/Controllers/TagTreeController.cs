@@ -7,7 +7,7 @@ namespace Web.Controllers
 {
     public class TagTreeController : ApiController
     {
-        ITagTreeRepository _repository;
+        private readonly ITagTreeRepository _repository;
 
         public TagTreeController(ITagTreeRepository repository)
         {

@@ -1,17 +1,15 @@
 ﻿using EfEnumToLookup.LookupGenerator;
-using Microsoft.Practices.Unity;
 using System.Data.Entity;
-using Timelog.Common;
 
 namespace Timelog.DataAccess
 {
     public class TimeLogContextDropCreateDatabaseAlwaysInitializer : DropCreateDatabaseAlways<TimeLogContext>, ITimeLogContextInitializer
     {
+        private readonly IDataGeneratorFactory _dataGeneratorFactory;
 
-        private IUnityContainer _unityContainer;
-        public TimeLogContextDropCreateDatabaseAlwaysInitializer(IUnityContainer unityContainer) : base()
+        public TimeLogContextDropCreateDatabaseAlwaysInitializer(IDataGeneratorFactory dataGeneratorFactory) : base()
         {
-            _unityContainer = unityContainer;
+            _dataGeneratorFactory = dataGeneratorFactory;
         }
 
         protected override void Seed(TimeLogContext context)
@@ -21,13 +19,14 @@ namespace Timelog.DataAccess
             //Build enumeration tables.
             var enumToLookup = new EnumToLookup();
             enumToLookup.Apply(context);
+
+            var dataGenerator = _dataGeneratorFactory.Build(context);
        
-            var generator = _unityContainer.Resolve<IDataGenerator>();
-            generator.GenerateUsers();
-            generator.GenerateTags();
-            generator.GenerateTagTrees();
-            generator.GenerateBookingCodes();            
-            generator.GenerateTimeEntries();            
+            dataGenerator.GenerateUsers();
+            dataGenerator.GenerateTags();
+            dataGenerator.GenerateTagTrees();
+            dataGenerator.GenerateBookingCodes();
+            dataGenerator.GenerateTimeEntries();            
         }
     }
 }

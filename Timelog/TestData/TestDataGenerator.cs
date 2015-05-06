@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Timelog.Common;
+﻿using Timelog.Common;
 
 namespace Timelog.TestData
 {
-    public class DataGenerator : IDataGenerator
+    public class TestDataGenerator : IDataGenerator
     {
-        private IDataSeeder _dataSeeder;
+        private readonly IDataSeeder _dataSeeder;
       
-        public DataGenerator(IDataSeeder dataSeeder)
+        public TestDataGenerator(IDataSeeder dataSeeder)
         {
             _dataSeeder = dataSeeder;                        
         }

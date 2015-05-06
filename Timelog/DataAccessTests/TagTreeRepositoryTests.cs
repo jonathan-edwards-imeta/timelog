@@ -15,7 +15,7 @@ namespace TimeLog.DataAccessTests
         [TestCase(20)]
         public void GetTagTreeFromTheRepositoryReturnsValidTagTree(int id)
         {
-            var ttr = new TagTreeRepository(Container, Container.Resolve<TimeLogContext>());
+            var ttr = new TagTreeRepository(Sut.Context);
             var tt = ttr.GetById(id);
 
             var originalTagTree = TagsTagTreesBookingCodes.TagTrees[id-1];
