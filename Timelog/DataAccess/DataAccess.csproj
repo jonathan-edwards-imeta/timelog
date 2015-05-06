@@ -60,9 +60,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestDataGeneratorFactory.cs" />
     <Compile Include="Conventions\EnumRenamingConvention.cs" />
     <Compile Include="Conventions\ForeignKeyNamingConvention.cs" />
     <Compile Include="DataSeeder.cs" />
+    <Compile Include="IDataGeneratorFactory.cs" />
     <Compile Include="ITimeLogContextInitializer.cs" />
     <Compile Include="Migrations\201504171627100_InitialCreate.cs" />
     <Compile Include="Migrations\201504171627100_InitialCreate.Designer.cs">
@@ -91,6 +93,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{b5bc2c8f-a98d-4994-8184-ab29f59cd8a3}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestData\TestData.csproj">
+      <Project>{792d790f-b649-4837-bc11-9a1d39eff841}</Project>
+      <Name>TestData</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

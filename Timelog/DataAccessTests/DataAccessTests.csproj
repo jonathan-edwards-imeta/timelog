@@ -86,6 +86,10 @@
       <Project>{3705be88-ec33-4c8c-81e8-489d7eabeb61}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataService\DataService.csproj">
+      <Project>{F484B32C-D02B-4C33-A7A9-209CCD071471}</Project>
+      <Name>DataService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{b5bc2c8f-a98d-4994-8184-ab29f59cd8a3}</Project>
       <Name>Model</Name>

@@ -1,5 +1,4 @@
-﻿using Microsoft.Practices.Unity;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Timelog.DataAccess.Conventions;
 using Timelog.Model;
@@ -8,9 +7,8 @@ namespace Timelog.DataAccess
 {
     public class TimeLogContext : DbContext
     {
-        public TimeLogContext(IUnityContainer unityContainer) : base()
+        public TimeLogContext(ITimeLogContextInitializer contextInitializer) : base()
         {
-            var contextInitializer = unityContainer.Resolve<ITimeLogContextInitializer>();
             Database.SetInitializer(contextInitializer);           
         }
 

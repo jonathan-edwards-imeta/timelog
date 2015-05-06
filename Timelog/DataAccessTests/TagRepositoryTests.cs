@@ -14,7 +14,7 @@ namespace TimeLog.DataAccessTests
         [Test]
         public void GetAllTagsFromTheRepositoryReturnsAllTags()
         {
-            var tr = new TagRepository(Container, Container.Resolve<TimeLogContext>());
+            var tr = new TagRepository(Sut.Context);
             var allRepositoryTags = tr.GetAll().ToList();
 
             Assert.AreEqual(TagsTagTreesBookingCodes.Tags.Count(), allRepositoryTags.Count());

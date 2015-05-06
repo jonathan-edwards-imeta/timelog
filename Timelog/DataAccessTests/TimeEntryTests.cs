@@ -15,7 +15,7 @@ namespace TimeLog.DataAccessTests
         [TestCase(1)]
         public void GetTimeEntryFromTheRepositoryReturnsValidTimeEntry(int id)
         {
-            var ter = new TimeEntryRepository(Container, Container.Resolve<TimeLogContext>());
+            var ter = new TimeEntryRepository(Sut.Context);
             var te = ter.GetById(id);
 
             var originalTimeEntry = TimeEntries.TimeBookings.ToList()[id - 1];

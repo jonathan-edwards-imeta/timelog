@@ -7,7 +7,7 @@ namespace Timelog.DataAccess
 {
     public class DataSeeder : IDataSeeder
     {
-        private TimeLogContext _context;
+        private readonly TimeLogContext _context;
         public DataSeeder(TimeLogContext context)
         {
              _context = context;

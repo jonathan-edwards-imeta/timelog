@@ -1,5 +1,4 @@
-﻿using Microsoft.Practices.Unity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Timelog.DataService.Interface;
@@ -9,12 +8,10 @@ namespace Timelog.DataAccess.Repositories
 {
     public class TagTreeRepository : ITagTreeRepository, IDisposable
     {
-        private IUnityContainer _unityContainer;
         private TimeLogContext _db;
 
-        public TagTreeRepository(IUnityContainer unityContainer, TimeLogContext db)
+        public TagTreeRepository(TimeLogContext db)
         {
-            _unityContainer = unityContainer;
             _db = db;
         }
 
