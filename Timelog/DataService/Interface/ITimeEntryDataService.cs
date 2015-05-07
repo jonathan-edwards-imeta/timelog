@@ -3,9 +3,8 @@ using Timelog.Model;
 
 namespace Timelog.DataService.Interface
 {
-    public interface ITimeEntryRepository
+    public interface ITimeEntryDataService
     {
-        IEnumerable<TimeEntry> GetAll();
         TimeEntry GetById(int id);
         void Add(TimeEntry timeEntry);
         TimeEntry Put(TimeEntry timeEntry);

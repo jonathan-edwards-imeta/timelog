@@ -7,26 +7,32 @@ namespace Web.Controllers
 {
     public class BookingCodeController : ApiController
     {
-        IBookingCodeRepository _repository;
+        IBookingCodeDataService _dataService;
 
-        public BookingCodeController(IBookingCodeRepository repository)
+        public BookingCodeController(IBookingCodeDataService dataService)
         {
-            _repository = repository;
+            _dataService = dataService;
         }
 
         public IEnumerable<BookingCode> Get()
         {
-            return _repository.GetAll();
+            return _dataService.GetAll();
         }
 
         public IHttpActionResult Get(int id)
         {
-            var bookingCode = _repository.GetById(id);
+            var bookingCode = _dataService.GetById(id);
             if (bookingCode == null)
             {
                 return NotFound();
             }
             return Ok(bookingCode);
+        }
+
+        // POST /api/BookingCode/5
+        public void Post(BookingCode bookingCodeToCreate)
+        {
+            _dataService.CreateBookingCode(bookingCodeToCreate);
         }
     }
 }

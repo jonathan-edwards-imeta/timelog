@@ -1,23 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Timelog.DataService.Interface;
+using Timelog.DataAccess.Interface;
 using Timelog.Model;
+using TimeLog.EntityFramework.Interfaces;
 
 namespace Timelog.DataAccess.Repositories
 {
-    public class TagTreeRepository : ITagTreeRepository, IDisposable
+    public class TagTreeRepository : ITagTreeRepository
     {
-        private TimeLogContext _db;
+        private readonly IAmbientDbContextLocator _ambientDbContextLocator;
 
-        public TagTreeRepository(TimeLogContext db)
+        private TimeLogContext DbContext
         {
-            _db = db;
+            get
+            {
+                var dbContext = _ambientDbContextLocator.Get<TimeLogContext>();
+
+                if (dbContext == null)
+                    throw new InvalidOperationException("No ambient DbContext of type TimeLogContext found. This means that this repository method has been called outside of the scope of a DbContextScope. A repository must only be accessed within the scope of a DbContextScope, which takes care of creating the DbContext instances that the repositories need and making them available as ambient contexts. This is what ensures that, for any given DbContext-derived type, the same instance is used throughout the duration of a business transaction. To fix this issue, use IDbContextScopeFactory in your top-level business logic service method to create a DbContextScope that wraps the entire business transaction that your service method implements. Then access this repository within that scope. Refer to the comments in the IDbContextScope.cs file for more details.");
+
+                return dbContext;
+            }
+        }
+
+        public TagTreeRepository(IAmbientDbContextLocator ambientDbContextLocator)
+        {
+            if (ambientDbContextLocator == null) throw new ArgumentNullException("ambientDbContextLocator");
+            _ambientDbContextLocator = ambientDbContextLocator;
         }
 
         private IEnumerable<TagTree> GetAllInternal()
         {
-            var result = _db.TagTrees.IncludeMultiple(x => x.Tag, y => y.RelatedTagTree);
+            var result = DbContext.TagTrees.IncludeMultiple(x => x.Tag, y => y.RelatedTagTree);
             //foreach (var tagTree in result)
             //{
             //    var related = tagTree.RelatedTagTree;
@@ -65,26 +80,15 @@ namespace Timelog.DataAccess.Repositories
 
         public void Add(TagTree tagTree)
         {
-            _db.TagTrees.Add(tagTree);
-            _db.SaveChanges();
+            DbContext.TagTrees.Add(tagTree);
         }
-
-        protected void Dispose(bool disposing)
+        public bool Delete(int tagTreeToDelete)
         {
-            if (disposing)
-            {
-                if (_db != null)
-                {
-                    _db.Dispose();
-                    _db = null;
-                }
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            var got = GetById(tagTreeToDelete);
+            if (got == null)
+                return false;
+            DbContext.TagTrees.Remove(got);
+            return true;
         }
     }
 }

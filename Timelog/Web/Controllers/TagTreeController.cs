@@ -7,21 +7,21 @@ namespace Web.Controllers
 {
     public class TagTreeController : ApiController
     {
-        private readonly ITagTreeRepository _repository;
+        ITagTreeDataService _dataService;
 
-        public TagTreeController(ITagTreeRepository repository)
+        public TagTreeController(ITagTreeDataService dataService)
         {
-            _repository = repository;
-        }
+            _dataService = dataService;
+        }       
 
         public IEnumerable<TagTree> Get()
         {
-            return _repository.GetAll();
+            return _dataService.GetAll();
         }
 
         public IHttpActionResult Get(int id)
         {
-            var tagTree = _repository.GetById(id);
+            var tagTree = _dataService.GetById(id);
             if (tagTree == null)
             {
                 return NotFound();
