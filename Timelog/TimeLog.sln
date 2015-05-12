@@ -37,6 +37,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework.Interfaces"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework.Implementation", "EntityFramework.Implementation\EntityFramework.Implementation.csproj", "{6FE99683-2198-48BC-98E8-13E2B3FEBAC4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MigrationFromOldTimeLog", "MigrationFromOldTimeLog", "{6AA16B93-758D-4A19-812E-BD4F188BB5EC}"
+	ProjectSection(SolutionItems) = preProject
+		MigrateAll.sql = MigrateAll.sql
+		MigrateTriggers.sql = MigrateTriggers.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,5 +97,6 @@ Global
 		{B0F41EFB-7DFF-4E03-AEEF-10826E5601FE} = {58430AC2-5F4D-48F9-81EE-ED99E2E47DAD}
 		{792D790F-B649-4837-BC11-9A1D39EFF841} = {D43CCDAA-2F8B-479D-B91C-71777FCD1871}
 		{69605615-FEE0-48C6-8A84-D9FD2431D8A7} = {D43CCDAA-2F8B-479D-B91C-71777FCD1871}
+		{6AA16B93-758D-4A19-812E-BD4F188BB5EC} = {58430AC2-5F4D-48F9-81EE-ED99E2E47DAD}
 	EndGlobalSection
 EndGlobal
