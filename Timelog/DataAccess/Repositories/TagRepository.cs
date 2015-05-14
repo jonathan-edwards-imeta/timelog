@@ -32,7 +32,7 @@ namespace Timelog.DataAccess.Repositories
 
         public IEnumerable<Tag> GetAll()
         {
-            return DbContext.Tags;
+            return DbContext.Tags.ToArray();
         }
         public Tag GetById(int id)
         {

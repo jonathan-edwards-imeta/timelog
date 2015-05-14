@@ -83,7 +83,7 @@
     <Compile Include="TimeLogContext.cs" />
     <Compile Include="TimeLogContextDropCreateDatabaseAlwaysInitializer.cs" />
     <Compile Include="TimeLogContextCreateDatabaseIfNotExistsInitializer.cs" />
-    <Compile Include="TimLogDbContextFactory.cs" />
+    <Compile Include="TimeLogDbContextFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common\Common.csproj">
