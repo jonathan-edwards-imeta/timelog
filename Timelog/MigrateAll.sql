@@ -1,4 +1,10 @@
 ﻿
+
+DELETE FROM [dbo].[User]
+DELETE FROM [dbo].[TimeEntry]
+DELETE FROM [dbo].[BookingCode]
+DELETE FROM [TimeLog].[dbo].[TagTree]
+DELETE FROM [TimeLog].[dbo].[Tag]
  
 --Fix collation of user names to match old db
 ALTER TABLE [TimeLog].[dbo].[User]
@@ -37,7 +43,6 @@ INSERT INTO [dbo].[TagTree] ([RelatedTagTreeId],[TagId])
 SET IDENTITY_INSERT [TimeLog].[dbo].[BookingCode] ON
 DELETE FROM [TimeLog].[dbo].[BookingCode] where [Id] < 1000;
 
---@todo FIX THIS
 INSERT INTO [TimeLog].[dbo].[BookingCode] ([Id], [TagTreeId])
 	select distinct pc.CategoryId, tt.Id
 		from [TimeTracker].[dbo].[aspnet_starterkits_ProjectCategories] pc
@@ -45,7 +50,7 @@ INSERT INTO [TimeLog].[dbo].[BookingCode] ([Id], [TagTreeId])
 			join [TimeLog].[dbo].[Tag] pct on pct.[Text] = pc.[CategoryName] and pct.[TagTypeId] = 4
 			join [TimeLog].[dbo].[Tag] pt on pt.[Text] = p.[ProjectName] and pt.[TagTypeId] = 1
 			join [TimeLog].[dbo].[TagTree] rtt on rtt.TagId = pt.Id
-			join [TimeLog].[dbo].[TagTree] tt on tt.TagId = pct.Id
+			join [TimeLog].[dbo].[TagTree] tt on tt.TagId = pct.Id and tt.RelatedTagTreeId = rtt.Id
 
 DBCC checkident ("[TimeLog].[dbo].[BookingCode]", reseed, 1000);
 
