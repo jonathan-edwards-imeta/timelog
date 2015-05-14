@@ -7,7 +7,6 @@
  */
 using System;
 using System.Data;
-using TimeLog.EntityFramework.Implementation;
 using TimeLog.EntityFramework.Interfaces;
 
 namespace TimeLog.EntityFramework.Implementation

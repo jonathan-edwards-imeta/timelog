@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EntityFramework.Interfaces\EntityFramework.Interfaces.csproj">
-      <Project>{90d4492b-abd8-4fe6-9f15-44acaffd8828}</Project>
+      <Project>{88b6d9e9-3853-4e91-9644-eb3dd07910f8}</Project>
       <Name>EntityFramework.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
