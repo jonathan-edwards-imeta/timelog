@@ -52,6 +52,7 @@ namespace Timelog.DataAccess.Repositories
         public void Add(TimeEntry timeEntry)
         {
             DbContext.TimeEntries.Add(timeEntry);
+            //CR-SKG: Save in the repository
             DbContext.SaveChanges();
         }
 
