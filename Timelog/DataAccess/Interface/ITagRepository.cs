@@ -7,6 +7,8 @@ namespace Timelog.DataAccess.Interface
     {
         IEnumerable<Tag> GetAll();
         Tag GetById(int id);
+        
+        //CR-SKG: Inconsistent variable naming
         void Add(Tag tag);
         bool Delete(int tagToDelete);
     }
