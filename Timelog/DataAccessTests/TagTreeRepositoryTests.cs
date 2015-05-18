@@ -1,6 +1,4 @@
-using Microsoft.Practices.Unity;
 using NUnit.Framework;
-using Timelog.DataAccess;
 using Timelog.DataAccess.Repositories;
 using Timelog.TestData;
 
@@ -14,14 +12,17 @@ namespace TimeLog.DataAccessTests
         [TestCase(14)]
         [TestCase(20)]
         public void GetTagTreeFromTheRepositoryReturnsValidTagTree(int id)
-        {
-            var ttr = new TagTreeRepository(Sut.Context);
-            var tt = ttr.GetById(id);
+        {           
+            var ttr = new TagTreeRepository(Sut.MyAmbientDbContextLocator);
+            using (var dbContextScope = Sut.MyDbContextScopeFactory.Create())
+            {
+                var tt = ttr.GetById(id);
 
-            var originalTagTree = TagsTagTreesBookingCodes.TagTrees[id-1];
-            
-            Assert.IsNotNull(originalTagTree, "originalTagTree is null");
-            Assert.AreEqual(tt.TagTreePath, originalTagTree.TagTreePath);
+                var originalTagTree = TagsTagTreesBookingCodes.TagTrees[id - 1];
+
+                Assert.IsNotNull(originalTagTree, "originalTagTree is null");
+                Assert.AreEqual(tt.TagTreePath, originalTagTree.TagTreePath);
+            }
         }
     }
 }

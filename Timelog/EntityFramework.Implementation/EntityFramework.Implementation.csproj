@@ -1,16 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F484B32C-D02B-4C33-A7A9-209CCD071471}</ProjectGuid>
+    <ProjectGuid>{6FE99683-2198-48BC-98E8-13E2B3FEBAC4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Timelog.DataService</RootNamespace>
-    <AssemblyName>DataService</AssemblyName>
+    <RootNamespace>TimeLog.EntityFramework.Implementation</RootNamespace>
+    <AssemblyName>TimeLog.EntityFramework.Implementation</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,9 +34,11 @@
   <ItemGroup>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -46,33 +50,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookingCodeDataService.cs" />
-    <Compile Include="TagTreeDataService.cs" />
-    <Compile Include="TagDataService.cs" />
-    <Compile Include="Interface\IBookingCodeDataService.cs" />
-    <Compile Include="Interface\ITagDataService.cs" />
-    <Compile Include="Interface\ITagTreeDataService.cs" />
-    <Compile Include="Interface\ITimeEntryDataService.cs" />
+    <Compile Include="AmbientContextSuppressor.cs" />
+    <Compile Include="AmbientDbContextLocator.cs" />
+    <Compile Include="DbContextCollection.cs" />
+    <Compile Include="DbContextReadOnlyScope.cs" />
+    <Compile Include="DbContextScope.cs" />
+    <Compile Include="DbContextScopeFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TimeEntryDataService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{3705be88-ec33-4c8c-81e8-489d7eabeb61}</Project>
-      <Name>DataAccess</Name>
-    </ProjectReference>
+    <None Include="..\EntityFramework.Interfaces\DbContextScope.Interfaces.licenseheader">
+      <Link>DbContextScope.Interfaces.licenseheader</Link>
+    </None>
+    <None Include="App.config" />
+    <None Include="LICENSE" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\EntityFramework.Interfaces\EntityFramework.Interfaces.csproj">
-      <Project>{88b6d9e9-3853-4e91-9644-eb3dd07910f8}</Project>
+      <Project>{90d4492b-abd8-4fe6-9f15-44acaffd8828}</Project>
       <Name>EntityFramework.Interfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{b5bc2c8f-a98d-4994-8184-ab29f59cd8a3}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

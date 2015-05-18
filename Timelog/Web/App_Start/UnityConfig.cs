@@ -1,9 +1,13 @@
 using Microsoft.Practices.Unity;
 using System.Web.Http;
 using Timelog.DataAccess;
+using Timelog.DataService;
 using Timelog.DataAccess.Repositories;
-using Timelog.DataService.Interface;
+using Timelog.DataAccess.Interface;
 using Unity.WebApi;
+using Timelog.DataService.Interface;
+using TimeLog.EntityFramework.Interfaces;
+using TimeLog.EntityFramework.Implementation;
 
 namespace Web
 {
@@ -13,10 +17,14 @@ namespace Web
         {
 			var container = new UnityContainer();
             
-            container.RegisterType<TimeLogContext, TimeLogContext>();
             container.RegisterType<IDataGeneratorFactory, TestDataGeneratorFactory>(new HierarchicalLifetimeManager());
             container.RegisterType<ITimeLogContextInitializer, TimeLogContextCreateDatabaseIfNotExistsInitializer>();
             //container.RegisterType<ITimeLogContextInitializer, TimeLogContextDropCreateDatabaseAlwaysInitializer>();
+
+            //TODO fix this
+            //container.RegisterType<IDbContextFactory, TimeLogDbContextFactory>(new HierarchicalLifetimeManager());
+            container.RegisterType<IDbContextScopeFactory, DbContextScopeFactory>(new HierarchicalLifetimeManager());
+            container.RegisterType<IAmbientDbContextLocator, AmbientDbContextLocator>(new HierarchicalLifetimeManager());
 
             // register all your components with the container here
             // it is NOT necessary to register your controllers
@@ -24,7 +32,12 @@ namespace Web
             container.RegisterType<ITagTreeRepository, TagTreeRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IBookingCodeRepository, BookingCodeRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<ITimeEntryRepository, TimeEntryRepository>(new HierarchicalLifetimeManager());
-                       
+
+            container.RegisterType<ITagDataService, TagDataService>(new HierarchicalLifetimeManager());
+            container.RegisterType<ITagTreeDataService, TagTreeDataService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IBookingCodeDataService, BookingCodeDataService>(new HierarchicalLifetimeManager());
+            container.RegisterType<ITimeEntryDataService, TimeEntryDataService>(new HierarchicalLifetimeManager());
+
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }

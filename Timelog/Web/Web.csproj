@@ -57,6 +57,9 @@
     <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
       <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -88,11 +91,6 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="Unity.WebApi">
       <HintPath>..\packages\Unity.WebAPI.5.1\lib\net45\Unity.WebApi.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +133,14 @@
     <ProjectReference Include="..\DataService\DataService.csproj">
       <Project>{f484b32c-d02b-4c33-a7a9-209ccd071471}</Project>
       <Name>DataService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EntityFramework.Implementation\EntityFramework.Implementation.csproj">
+      <Project>{6fe99683-2198-48bc-98e8-13e2b3febac4}</Project>
+      <Name>EntityFramework.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EntityFramework.Interfaces\EntityFramework.Interfaces.csproj">
+      <Project>{88b6d9e9-3853-4e91-9644-eb3dd07910f8}</Project>
+      <Name>EntityFramework.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{b5bc2c8f-a98d-4994-8184-ab29f59cd8a3}</Project>

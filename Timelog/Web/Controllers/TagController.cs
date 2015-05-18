@@ -7,21 +7,22 @@ namespace Web.Controllers
 {
     public class TagController : ApiController
     {
-        ITagRepository _repository;
+        ITagDataService _dataService;
 
-        public TagController(ITagRepository repository)
+        public TagController(ITagDataService dataService)
         {
-            _repository = repository;
+            _dataService = dataService;
         }
+
 
         public IEnumerable<Tag> Get()
         {
-            return _repository.GetAll();
+            return _dataService.GetAll();
         }
 
         public IHttpActionResult Get(int id)
         {
-            var tag = _repository.GetById(id);
+            var tag = _dataService.GetById(id);
             if (tag == null)
             {
                 return NotFound();

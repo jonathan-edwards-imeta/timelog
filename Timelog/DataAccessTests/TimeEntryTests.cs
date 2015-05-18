@@ -1,7 +1,5 @@
-using System.Linq;
-using Microsoft.Practices.Unity;
 using NUnit.Framework;
-using Timelog.DataAccess;
+using System.Linq;
 using Timelog.DataAccess.Repositories;
 using Timelog.TestData;
 
@@ -14,14 +12,17 @@ namespace TimeLog.DataAccessTests
         [TestCase(11)]
         [TestCase(1)]
         public void GetTimeEntryFromTheRepositoryReturnsValidTimeEntry(int id)
-        {
-            var ter = new TimeEntryRepository(Sut.Context);
-            var te = ter.GetById(id);
+        {   
+            var ter = new TimeEntryRepository(Sut.MyAmbientDbContextLocator);
+            using (var dbContextScope = Sut.MyDbContextScopeFactory.Create())
+            {
+                var te = ter.GetById(id);
 
-            var originalTimeEntry = TimeEntries.TimeBookings.ToList()[id - 1];
+                var originalTimeEntry = TimeEntries.TimeBookings.ToList()[id - 1];
 
-            Assert.IsNotNull(originalTimeEntry, "originalTimeEntry is null");
-            Assert.AreEqual(te.BookingCode.TagTree.TagTreePath, originalTimeEntry.BookingCode.TagTree.TagTreePath);
+                Assert.IsNotNull(originalTimeEntry, "originalTimeEntry is null");
+                Assert.AreEqual(te.BookingCode.TagTree.TagTreePath, originalTimeEntry.BookingCode.TagTree.TagTreePath);
+            }
         }
     }
 }
