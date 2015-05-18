@@ -8,6 +8,11 @@ using TimeLog.EntityFramework.Interfaces;
 
 namespace Timelog.DataService
 {
+    //CR-SKG: Same problems as TagDataService
+    //Could our dataservice be replaced with a single DataService<T>
+    //and then we could create each implementation as an inheritance from DataService<T> where T is the correct type. for example.
+    //public interface ITagTreeDataService : IDataService<TagTree>
+    //public class TagTreeDataService : DataService<TagTree>, ITagTreeDataService
     public class BookingCodeDataService : IBookingCodeDataService
     {
         private readonly IDbContextScopeFactory _dbContextScopeFactory;

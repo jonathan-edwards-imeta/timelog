@@ -8,9 +8,16 @@ using TimeLog.EntityFramework.Interfaces;
 
 namespace Timelog.DataService
 {
+    //CR-SKG: Same problems as TagDataService
+    //Could our dataservice be replaced with a single DataService<T>
+    //and then we could create each implementation as an inheritance from DataService<T> where T is the correct type. for example.
+    //public interface ITagTreeDataService : IDataService<TagTree>
+    //public class TagTreeDataService : DataService<TagTree>, ITagTreeDataService
     public class TagDataService : ITagDataService
     {
         private readonly IDbContextScopeFactory _dbContextScopeFactory;
+
+        //CR-SKG: This can be made readonly.
         ITagRepository _tagRepository;
 
         public TagDataService(IDbContextScopeFactory dbContextScopeFactory, ITagRepository tagRepository)
@@ -21,7 +28,7 @@ namespace Timelog.DataService
             _tagRepository = tagRepository;
         }
 
-        public void Add(Tag tagToCreate)
+        public void Add(Tag tagToCreate)    
         {
             if (tagToCreate == null)
                 throw new ArgumentNullException("tagToCreate");
@@ -36,6 +43,7 @@ namespace Timelog.DataService
 
         public bool Delete(int tagToDelete)
         {
+            //CR-SKG: This is always false, did you mean int? or tagToDelete == 0
             if (tagToDelete == null)
                 throw new ArgumentNullException("tagToDelete");
 
@@ -43,6 +51,8 @@ namespace Timelog.DataService
             {
                 //-- Persist
                 _tagRepository.Delete(tagToDelete);
+
+                //CR-SKG: do we need the result?
                 var result = dbContextScope.SaveChanges();
                
                 return true;
@@ -53,6 +63,7 @@ namespace Timelog.DataService
         {
             using (var dbContextScope = _dbContextScopeFactory.CreateReadOnly())
             {
+                //CR-SKG: Do we need to get the dbContext from the dbContextScope?
                 var dbContext = dbContextScope.DbContexts.Get<TimeLogContext>();
                 var result = _tagRepository.GetAll();
                 return result;
@@ -63,6 +74,7 @@ namespace Timelog.DataService
         {
             using (var dbContextScope = _dbContextScopeFactory.CreateReadOnly())
             {
+                //CR-SKG: Do we need to get the dbContext from the dbContextScope?
                 var dbContext = dbContextScope.DbContexts.Get<TimeLogContext>();
                 var result = _tagRepository.GetById(id);
                 return result;

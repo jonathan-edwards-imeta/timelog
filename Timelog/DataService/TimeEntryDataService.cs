@@ -11,11 +11,15 @@ using TimeLog.EntityFramework.Interfaces;
 
 namespace Timelog.DataService
 {
+    //CR-SKG: Same problems as TagDataService
+    //This uses a slightly different pattern to the others. Maybe IDataService should just have GetById, Add, Delete??
+    //and then have subclasses of that...
     public class TimeEntryDataService : ITimeEntryDataService
     {
         private readonly IDbContextScopeFactory _dbContextScopeFactory;
         ITimeEntryRepository _TimeEntryRepository;
 
+        //CR-SKG: Incorrect variable naming, should be timeEntryRepository
         public TimeEntryDataService(IDbContextScopeFactory dbContextScopeFactory, ITimeEntryRepository TimeEntryRepository)
         {
             if (dbContextScopeFactory == null) throw new ArgumentNullException("dbContextScopeFactory");
@@ -24,6 +28,8 @@ namespace Timelog.DataService
             _TimeEntryRepository = TimeEntryRepository;
         }
 
+        //CR-SKG: Incorrect variable naming, should be timeEntryToCreate, no we really need the action on the 
+        //end of the Variable of name? Is it not obvious from the method name?
         public void Add(TimeEntry TimeEntryToCreate)
         {
             if (TimeEntryToCreate == null)
@@ -37,6 +43,7 @@ namespace Timelog.DataService
             }
         }
 
+        //CR-SKG: Incorrect variable naming, should be timeEntryToDelete
         public bool Delete(int TimeEntryToDelete)
         {
             if (TimeEntryToDelete == null)
