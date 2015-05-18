@@ -7,6 +7,8 @@ namespace Timelog.DataAccess.Interface
     {
         IEnumerable<BookingCode> GetAll();
         BookingCode GetById(int id);
+        
+        //Personal preference, do we need to have the naming convention, BookingCodeTo<Action> - doesn't the method name make it obvious?
         void Add(BookingCode bookingCodeToAdd);
         bool Delete(int bookingCodeIdToDelete);
     }
