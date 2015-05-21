@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Timelog.DataAccess.Interface;
+using Timelog.Common.Interface;
 using Timelog.Model;
 using TimeLog.EntityFramework.Interfaces;
 
-namespace Timelog.DataAccess.Repositories
+namespace Timelog.Common.Repositories
 {
     public class BookingCodeRepository : IBookingCodeRepository
     {
@@ -58,17 +58,13 @@ namespace Timelog.DataAccess.Repositories
         
         public IEnumerable<BookingCode> GetAll()
         {
-            //return db.BookingCodes.Include(x=>x.TagTree);
             var result = GetAllInternal().ToArray();
             return result;
         }
         
         public BookingCode GetById(int id)
         {
-            //var result = db.BookingCodes.Include(x => x.TagTree);
-            //var singleItem = result.FirstOrDefault(p => p.Id == id);
-            //return singleItem;
-            
+           
             var result = GetAllInternal();
 
             return result.FirstOrDefault(x => x.Id == id);
@@ -77,7 +73,6 @@ namespace Timelog.DataAccess.Repositories
         public void Add(BookingCode BookingCode)
         {
             DbContext.BookingCodes.Add(BookingCode);
-           //DO NOT CALL SAVE CHANGES!! its called in the service layer
         }
                
         public bool Delete(int bookingCodeIdToDelete)

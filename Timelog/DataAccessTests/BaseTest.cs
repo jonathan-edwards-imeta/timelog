@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Timelog.Common;
-using Timelog.DataAccess;
+using Timelog.Common;
 using Timelog.TestData;
 using TimeLog.EntityFramework.Implementation;
 

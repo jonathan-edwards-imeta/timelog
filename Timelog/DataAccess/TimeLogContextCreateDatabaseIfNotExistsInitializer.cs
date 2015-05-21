@@ -1,7 +1,7 @@
 ﻿using EfEnumToLookup.LookupGenerator;
 using System.Data.Entity;
 
-namespace Timelog.DataAccess
+namespace Timelog.Common
 {
     public class TimeLogContextCreateDatabaseIfNotExistsInitializer : CreateDatabaseIfNotExists<TimeLogContext>, ITimeLogContextInitializer
     {

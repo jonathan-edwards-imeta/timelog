@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Timelog.DataAccess.Interface;
+using Timelog.Common.Interface;
 using Timelog.Model;
 using TimeLog.EntityFramework.Interfaces;
 
-namespace Timelog.DataAccess.Repositories
+namespace Timelog.Common.Repositories
 {
     public class TagRepository : ITagRepository
     {

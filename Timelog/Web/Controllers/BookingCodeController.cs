@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
-using Timelog.DataService.Interface;
+using Timelog.Common.Interface;
 using Timelog.Model;
 
 namespace Web.Controllers
@@ -30,9 +30,9 @@ namespace Web.Controllers
         }
 
         // POST /api/BookingCode/5
-        public void Post(BookingCode bookingCodeToCreate)
+        public void Post(BookingCode bookingCode)
         {
-            _dataService.CreateBookingCode(bookingCodeToCreate);
+            _dataService.Create(bookingCode);
         }
     }
 }

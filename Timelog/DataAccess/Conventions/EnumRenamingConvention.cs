@@ -2,7 +2,7 @@
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
-namespace Timelog.DataAccess.Conventions
+namespace Timelog.Common.Conventions
 {
     public class EnumRenamingConvention : IStoreModelConvention<EdmProperty>
     {

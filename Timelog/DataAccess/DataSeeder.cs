@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Timelog.Common;
 using Timelog.Model;
 
-namespace Timelog.DataAccess
+namespace Timelog.Common
 {
     public class DataSeeder : IDataSeeder
     {

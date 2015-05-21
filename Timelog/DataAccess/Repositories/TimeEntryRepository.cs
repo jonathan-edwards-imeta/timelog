@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using Timelog.DataAccess.Interface;
+using Timelog.Common.Interface;
 using Timelog.Model;
 using TimeLog.EntityFramework.Interfaces;
 
-namespace Timelog.DataAccess.Repositories
+namespace Timelog.Common.Repositories
 {
     public class TimeEntryRepository : ITimeEntryRepository
     {
@@ -36,6 +35,10 @@ namespace Timelog.DataAccess.Repositories
                 , h => h.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, i => i.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag
                 , j => j.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, k => k.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag
                 , l => l.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, m => m.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag
+                , n => n.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, o => o.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag
+                , p => p.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, q => q.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag
+                , r => r.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, s => s.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag
+                , t => t.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree, u => u.BookingCode.TagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.RelatedTagTree.Tag
                 );
 
             return result;
@@ -51,8 +54,7 @@ namespace Timelog.DataAccess.Repositories
 
         public void Add(TimeEntry timeEntry)
         {
-            DbContext.TimeEntries.Add(timeEntry);
-            DbContext.SaveChanges();
+            DbContext.TimeEntries.Add(timeEntry);            
         }
 
         public TimeEntry Update(TimeEntry timeEntry)
@@ -86,6 +88,6 @@ namespace Timelog.DataAccess.Repositories
             DbContext.TimeEntries.Remove(t);
             
             return true;
-        }       
+        }
     }
 }

@@ -41,6 +41,16 @@
   <ItemGroup>
     <Compile Include="IDataGenerator.cs" />
     <Compile Include="IDataSeeder.cs" />
+    <Compile Include="Interface\IBookingCodeDataService.cs" />
+    <Compile Include="Interface\IBookingCodeRepository.cs" />
+    <Compile Include="Interface\IDataService.cs" />
+    <Compile Include="Interface\IRepository.cs" />
+    <Compile Include="Interface\ITagDataService.cs" />
+    <Compile Include="Interface\ITagRepository.cs" />
+    <Compile Include="Interface\ITagTreeDataService.cs" />
+    <Compile Include="Interface\ITagTreeRepository.cs" />
+    <Compile Include="Interface\ITimeEntryDataService.cs" />
+    <Compile Include="Interface\ITimeEntryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using Timelog.DataAccess.Repositories;
+using Timelog.Common.Repositories;
 using Timelog.TestData;
 
 namespace TimeLog.DataAccessTests

@@ -47,16 +47,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BookingCodeDataService.cs" />
+    <Compile Include="GetAllDataService.cs" />
+    <Compile Include="DataService.cs" />
     <Compile Include="TagTreeDataService.cs" />
     <Compile Include="TagDataService.cs" />
-    <Compile Include="Interface\IBookingCodeDataService.cs" />
-    <Compile Include="Interface\ITagDataService.cs" />
-    <Compile Include="Interface\ITagTreeDataService.cs" />
-    <Compile Include="Interface\ITimeEntryDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeEntryDataService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common\Common.csproj">
+      <Project>{7b6c3dd3-6a87-49a8-a907-165aff8e66bc}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{3705be88-ec33-4c8c-81e8-489d7eabeb61}</Project>
       <Name>DataAccess</Name>

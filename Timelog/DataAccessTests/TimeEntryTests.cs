@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using System.Linq;
-using Timelog.DataAccess.Repositories;
+using Timelog.Common.Repositories;
 using Timelog.TestData;
 
 namespace TimeLog.DataAccessTests
@@ -21,7 +21,7 @@ namespace TimeLog.DataAccessTests
                 var originalTimeEntry = TimeEntries.TimeBookings.ToList()[id - 1];
 
                 Assert.IsNotNull(originalTimeEntry, "originalTimeEntry is null");
-                Assert.AreEqual(te.BookingCode.TagTree.TagTreePath, originalTimeEntry.BookingCode.TagTree.TagTreePath);
+                Assert.AreEqual(originalTimeEntry.BookingCode.TagTree.TagTreePath, te.BookingCode.TagTree.TagTreePath);
             }
         }
     }

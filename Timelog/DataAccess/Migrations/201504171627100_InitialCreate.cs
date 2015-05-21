@@ -1,6 +1,6 @@
 using System.Data.Entity.Migrations;
 
-namespace Timelog.DataAccess.Migrations
+namespace Timelog.Common.Migrations
 {
     public partial class InitialCreate : DbMigration
     {

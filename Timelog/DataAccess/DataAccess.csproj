@@ -59,10 +59,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\IBookingCodeRepository.cs" />
-    <Compile Include="Interface\ITagRepository.cs" />
-    <Compile Include="Interface\ITagTreeRepository.cs" />
-    <Compile Include="Interface\ITimeEntryRepository.cs" />
     <Compile Include="TestDataGeneratorFactory.cs" />
     <Compile Include="Conventions\EnumRenamingConvention.cs" />
     <Compile Include="Conventions\ForeignKeyNamingConvention.cs" />

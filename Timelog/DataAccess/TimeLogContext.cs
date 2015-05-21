@@ -1,9 +1,9 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using Timelog.DataAccess.Conventions;
+using Timelog.Common.Conventions;
 using Timelog.Model;
 
-namespace Timelog.DataAccess
+namespace Timelog.Common
 {
     public class TimeLogContext : DbContext
     {

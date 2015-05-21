@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
-using Timelog.DataService.Interface;
+using Timelog.Common.Interface;
 using Timelog.Model;
 
 namespace Web.Controllers

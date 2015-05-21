@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace Timelog.DataAccess
+namespace Timelog.Common
 {
     public interface ITimeLogContextInitializer : IDatabaseInitializer<TimeLogContext>
     {
