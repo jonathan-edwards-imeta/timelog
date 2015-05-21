@@ -1,5 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Web.Http;
+using System.Web.Http.Cors;
+
 
 namespace Web
 {
@@ -11,6 +13,12 @@ namespace Web
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
             // Web API configuration and services
+                        
+
+            // Enable CORS for all origins, al headers, and all methods.
+            // You can customize this to match your requirements.
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
 
             // Web API routes
             config.MapHttpAttributeRoutes();

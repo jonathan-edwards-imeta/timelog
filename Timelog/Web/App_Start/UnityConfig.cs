@@ -22,7 +22,7 @@ namespace Web
             //container.RegisterType<ITimeLogContextInitializer, TimeLogContextDropCreateDatabaseAlwaysInitializer>();
 
             //TODO fix this
-            //container.RegisterType<IDbContextFactory, TimeLogDbContextFactory>(new HierarchicalLifetimeManager());
+            container.RegisterType <IDbContextFactory, TimeLogDbContextFactory>(new HierarchicalLifetimeManager());
             container.RegisterType<IDbContextScopeFactory, DbContextScopeFactory>(new HierarchicalLifetimeManager());
             container.RegisterType<IAmbientDbContextLocator, AmbientDbContextLocator>(new HierarchicalLifetimeManager());
 
