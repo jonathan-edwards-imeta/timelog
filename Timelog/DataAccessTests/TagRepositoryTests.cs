@@ -1,8 +1,5 @@
-﻿using Microsoft.Practices.Unity;
-using NUnit.Framework;
-using System;
+﻿using NUnit.Framework;
 using System.Linq;
-using Timelog.DataAccess;
 using Timelog.DataAccess.Repositories;
 using Timelog.TestData;
 
@@ -14,15 +11,18 @@ namespace TimeLog.DataAccessTests
         [Test]
         public void GetAllTagsFromTheRepositoryReturnsAllTags()
         {
-            var tr = new TagRepository(Sut.Context);
-            var allRepositoryTags = tr.GetAll().ToList();
-
-            Assert.AreEqual(TagsTagTreesBookingCodes.Tags.Count(), allRepositoryTags.Count());
-            
-            foreach( var originalTag in TagsTagTreesBookingCodes.Tags)
+            var tr = new TagRepository(Sut.MyAmbientDbContextLocator);
+            using (var dbContextScope = Sut.MyDbContextScopeFactory.Create())
             {
-                Assert.IsNotNull(allRepositoryTags.FirstOrDefault(t => t.TagType == originalTag.TagType && t.Text == originalTag.Text));
-            }                                    
+                var allRepositoryTags = tr.GetAll().ToList();
+
+                Assert.AreEqual(TagsTagTreesBookingCodes.Tags.Count(), allRepositoryTags.Count());
+
+                foreach (var originalTag in TagsTagTreesBookingCodes.Tags)
+                {
+                    Assert.IsNotNull(allRepositoryTags.FirstOrDefault(t => t.TagType == originalTag.TagType && t.Text == originalTag.Text));
+                }
+            }                                      
         }
     }
 }

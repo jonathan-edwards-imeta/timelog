@@ -7,23 +7,17 @@ namespace Web.Controllers
 {
     public class TimeEntryController : ApiController
     {
-        ITimeEntryRepository _repository;
+        ITimeEntryDataService _dataService;
 
-        public TimeEntryController(ITimeEntryRepository repository)
+        public TimeEntryController(ITimeEntryDataService dataService)
         {
-            _repository = repository;
-        }
-
-        // GET /api/TimeEntry
-        public IEnumerable<TimeEntry> Get()
-        {
-            return _repository.GetAll();
+            _dataService = dataService;
         }
 
         // GET /api/TimeEntry/5
         public IHttpActionResult Get(int id)
         {
-            var timeEntry = _repository.GetById(id);
+            var timeEntry = _dataService.GetById(id);
             if (timeEntry == null)
             {
                 return NotFound();
@@ -34,19 +28,19 @@ namespace Web.Controllers
         // POST /api/TimeEntry/5
         public void Post(TimeEntry timeEntry)
         {
-            _repository.Add(timeEntry);
+            _dataService.Add(timeEntry);
         }
 
         // PUT /api/TimeEntry/???
         public void Put(TimeEntry value)
         {
-            _repository.Put(value);           
+            _dataService.Put(value);           
         }
 
         // DELETE /api/TimeEntry/5
         public void Delete(int id)
         {
-            _repository.Delete(id);
+            _dataService.Delete(id);
         }
     }
 }

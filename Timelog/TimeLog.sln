@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22310.1
+VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{B5BC2C8F-A98D-4994-8184-AB29F59CD8A3}"
 EndProject
@@ -32,6 +32,18 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common\Common.csproj", "{7B6C3DD3-6A87-49A8-A907-165AFF8E66BC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessTests", "DataAccessTests\DataAccessTests.csproj", "{69605615-FEE0-48C6-8A84-D9FD2431D8A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework.Interfaces", "EntityFramework.Interfaces\EntityFramework.Interfaces.csproj", "{88B6D9E9-3853-4E91-9644-EB3DD07910F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework.Implementation", "EntityFramework.Implementation\EntityFramework.Implementation.csproj", "{6FE99683-2198-48BC-98E8-13E2B3FEBAC4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MigrationFromOldTimeLog", "MigrationFromOldTimeLog", "{6AA16B93-758D-4A19-812E-BD4F188BB5EC}"
+	ProjectSection(SolutionItems) = preProject
+		MigrateAll.sql = MigrateAll.sql
+		MigrateTriggers.sql = MigrateTriggers.sql
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AngularJsClient", "AngularJsClient\AngularJsClient.xproj", "{B713C7FA-602A-4DED-B635-62709AAB811F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +83,18 @@ Global
 		{69605615-FEE0-48C6-8A84-D9FD2431D8A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69605615-FEE0-48C6-8A84-D9FD2431D8A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69605615-FEE0-48C6-8A84-D9FD2431D8A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88B6D9E9-3853-4E91-9644-EB3DD07910F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88B6D9E9-3853-4E91-9644-EB3DD07910F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88B6D9E9-3853-4E91-9644-EB3DD07910F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88B6D9E9-3853-4E91-9644-EB3DD07910F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FE99683-2198-48BC-98E8-13E2B3FEBAC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FE99683-2198-48BC-98E8-13E2B3FEBAC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FE99683-2198-48BC-98E8-13E2B3FEBAC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FE99683-2198-48BC-98E8-13E2B3FEBAC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B713C7FA-602A-4DED-B635-62709AAB811F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B713C7FA-602A-4DED-B635-62709AAB811F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B713C7FA-602A-4DED-B635-62709AAB811F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B713C7FA-602A-4DED-B635-62709AAB811F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,5 +103,6 @@ Global
 		{B0F41EFB-7DFF-4E03-AEEF-10826E5601FE} = {58430AC2-5F4D-48F9-81EE-ED99E2E47DAD}
 		{792D790F-B649-4837-BC11-9A1D39EFF841} = {D43CCDAA-2F8B-479D-B91C-71777FCD1871}
 		{69605615-FEE0-48C6-8A84-D9FD2431D8A7} = {D43CCDAA-2F8B-479D-B91C-71777FCD1871}
+		{6AA16B93-758D-4A19-812E-BD4F188BB5EC} = {58430AC2-5F4D-48F9-81EE-ED99E2E47DAD}
 	EndGlobalSection
 EndGlobal

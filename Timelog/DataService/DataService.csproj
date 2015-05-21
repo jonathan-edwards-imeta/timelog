@@ -30,7 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,17 +46,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\IBookingCodeRepository.cs" />
-    <Compile Include="Interface\ITagTreeRepository.cs" />
-    <Compile Include="Interface\ITimeEntryRepository.cs" />
-    <Compile Include="Interface\ITagRepository.cs" />
+    <Compile Include="BookingCodeDataService.cs" />
+    <Compile Include="TagTreeDataService.cs" />
+    <Compile Include="TagDataService.cs" />
+    <Compile Include="Interface\IBookingCodeDataService.cs" />
+    <Compile Include="Interface\ITagDataService.cs" />
+    <Compile Include="Interface\ITagTreeDataService.cs" />
+    <Compile Include="Interface\ITimeEntryDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimeEntryDataService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{3705be88-ec33-4c8c-81e8-489d7eabeb61}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EntityFramework.Interfaces\EntityFramework.Interfaces.csproj">
+      <Project>{88b6d9e9-3853-4e91-9644-eb3dd07910f8}</Project>
+      <Name>EntityFramework.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{b5bc2c8f-a98d-4994-8184-ab29f59cd8a3}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
