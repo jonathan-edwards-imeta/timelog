@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Timelog.Common.Interface;
-using Timelog.Common.Interface;
 using TimeLog.EntityFramework.Interfaces;
 
 namespace Timelog.Common

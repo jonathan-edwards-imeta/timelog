@@ -1,11 +1,9 @@
 using Microsoft.Practices.Unity;
 using System.Web.Http;
 using Timelog.Common;
-using Timelog.Common;
 using Timelog.Common.Repositories;
 using Timelog.Common.Interface;
 using Unity.WebApi;
-using Timelog.Common.Interface;
 using TimeLog.EntityFramework.Interfaces;
 using TimeLog.EntityFramework.Implementation;
 

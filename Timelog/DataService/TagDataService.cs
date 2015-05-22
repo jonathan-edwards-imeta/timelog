@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Timelog.Common;
-using Timelog.Common.Interface;
-using Timelog.Common.Interface;
+﻿using Timelog.Common.Interface;
 using Timelog.Model;
 using TimeLog.EntityFramework.Interfaces;
 

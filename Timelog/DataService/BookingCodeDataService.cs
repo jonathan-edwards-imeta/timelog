@@ -1,6 +1,5 @@
 ﻿using System;
 using Timelog.Common.Interface;
-using Timelog.Common.Interface;
 using Timelog.Model;
 using TimeLog.EntityFramework.Interfaces;
 

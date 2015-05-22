@@ -1,8 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
 using Timelog.Common;
-using Timelog.Common;
-using Timelog.TestData;
 using TimeLog.EntityFramework.Implementation;
 
 namespace TimeLog.DataAccessTests
@@ -25,14 +23,9 @@ namespace TimeLog.DataAccessTests
         private readonly Lazy<DbContextScopeFactory> _dbContextScopeFactory;
         private readonly Lazy<AmbientDbContextLocator> _ambientDbContextLocator;
 
-        // private readonly Lazy<TimeLogContext> _context;
         private readonly Lazy<ITimeLogContextInitializer> _timeLogContextInitializer;
         private readonly Lazy<IDataGeneratorFactory> _dataGeneratorFactory;
 
-        //public TimeLogContext Context
-        //{
-        //    get { return _context.Value; }
-        //}
         public AmbientDbContextLocator MyAmbientDbContextLocator { get { return _ambientDbContextLocator.Value; } }
         public DbContextScopeFactory MyDbContextScopeFactory { get { return _dbContextScopeFactory.Value; } }
     }
