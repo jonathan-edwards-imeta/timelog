@@ -6,7 +6,7 @@ namespace Timelog.Common.Interface
     {       
         T GetById(int id);
         void Add(T tag);
-        void Delete(int id);
+        bool Delete(int id);
     }
 
     public interface IGetAllDataService<T> : IDataService<T>

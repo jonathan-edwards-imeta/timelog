@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using System.Linq;
-using Timelog.Common.Repositories;
+using Timelog.DataAccess.Repositories;
 using Timelog.TestData;
 
 namespace TimeLog.DataAccessTests

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Timelog.Common;
 using Timelog.Common.Interface;
 using Timelog.Model;
 using TimeLog.EntityFramework.Interfaces;
 
-namespace Timelog.Common.Repositories
+namespace Timelog.DataAccess.Repositories
 {
     public class BookingCodeRepository : IBookingCodeRepository
     {

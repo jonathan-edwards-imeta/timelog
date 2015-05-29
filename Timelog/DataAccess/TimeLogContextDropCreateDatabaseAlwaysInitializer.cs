@@ -1,7 +1,7 @@
-﻿using EfEnumToLookup.LookupGenerator;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+using EfEnumToLookup.LookupGenerator;
 
-namespace Timelog.Common
+namespace Timelog.DataAccess
 {
     public class TimeLogContextDropCreateDatabaseAlwaysInitializer : DropCreateDatabaseAlways<TimeLogContext>, ITimeLogContextInitializer
     {

@@ -1,9 +1,10 @@
 ﻿using System;
+using Timelog.Common;
 using Timelog.Common.Interface;
 using Timelog.Model;
 using TimeLog.EntityFramework.Interfaces;
 
-namespace Timelog.Common
+namespace Timelog.DataService
 {
     public class BookingCodeDataService : GetAllDataService<BookingCode>, IBookingCodeDataService
     {

@@ -1,7 +1,7 @@
 ﻿using Timelog.Common;
 using Timelog.TestData;
 
-namespace Timelog.Common
+namespace Timelog.DataAccess
 {
     public class TestDataGeneratorFactory : IDataGeneratorFactory
     {

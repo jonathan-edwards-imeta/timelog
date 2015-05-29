@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using TimeLog.EntityFramework.Interfaces;
 
-namespace Timelog.Common
+namespace Timelog.DataAccess
 {
     public class TimeLogDbContextFactory : IDbContextFactory
     {

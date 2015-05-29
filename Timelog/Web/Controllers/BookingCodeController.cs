@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using Timelog.Common.Interface;
 using Timelog.Model;
 
@@ -39,7 +40,7 @@ namespace Web.Controllers
         {
             _dataService.Create(bookingCode);
 
-            return Ok();
+            return Created(new Uri(Url.Link("Api", new {controller = "BookingCode", id = bookingCode.Id})), bookingCode);
         }
     }
 }

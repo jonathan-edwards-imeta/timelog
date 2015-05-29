@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using Timelog.Common.Interface;
 using Timelog.Model;
 
@@ -28,8 +29,7 @@ namespace Web.Controllers
         public IHttpActionResult Post(TimeEntry timeEntry)
         {
             _dataService.Add(timeEntry);
-
-            return Ok();
+            return Created(new Uri(Url.Link("Api", new { controller = "TimeEntry", id = timeEntry.Id })), timeEntry);
         }
 
         // PUT /api/TimeEntry/???
@@ -43,9 +43,11 @@ namespace Web.Controllers
         // DELETE /api/TimeEntry/5
         public IHttpActionResult Delete(int id)
         {
-            _dataService.Delete(id);
-
-            return Ok();
+            var status = _dataService.Delete(id);
+            if(status)
+                return Ok();
+            else
+                return NotFound();
         }
     }
 }

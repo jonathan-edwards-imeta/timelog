@@ -1,6 +1,6 @@
 ﻿using Timelog.Common;
 
-namespace Timelog.Common
+namespace Timelog.DataAccess
 {
     public interface IDataGeneratorFactory
     {

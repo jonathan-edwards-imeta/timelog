@@ -1,4 +1,5 @@
 using System.Data.Entity.Migrations;
+using Timelog.DataAccess;
 
 namespace Timelog.Common.Migrations
 {

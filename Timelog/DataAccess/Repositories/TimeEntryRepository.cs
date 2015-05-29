@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Linq;
+using Timelog.Common;
 using Timelog.Common.Interface;
 using Timelog.Model;
 using TimeLog.EntityFramework.Interfaces;
 
-namespace Timelog.Common.Repositories
+namespace Timelog.DataAccess.Repositories
 {
     public class TimeEntryRepository : ITimeEntryRepository
     {
@@ -60,12 +61,12 @@ namespace Timelog.Common.Repositories
         public TimeEntry Update(TimeEntry timeEntry)
         {
             if (timeEntry == null)
-                throw new Exception(string.Format("TimeEntry {0} was not supplied."));
+                throw new Exception("TimeEntry was not supplied.");
             
             var t = GetById(timeEntry.Id);
 
             if (t == null)
-                throw new Exception(string.Format("TimeEntry with id {0} does not exist.", timeEntry.Id));
+                throw new Exception($"TimeEntry with id {timeEntry.Id} does not exist.");
 
             t.BookingCode = timeEntry.BookingCode;
             t.TimeEntryCreated = timeEntry.TimeEntryCreated;
