@@ -3,7 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Timelog.Common
+namespace Timelog.DataAccess
 {
     public static class QueryExtensions
     {

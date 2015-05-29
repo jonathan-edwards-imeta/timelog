@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Timelog.Common;
+using Timelog.DataAccess;
 using TimeLog.EntityFramework.Implementation;
 
 namespace TimeLog.DataAccessTests

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Timelog.Common;
 using Timelog.Common.Interface;
 using Timelog.Model;
 using TimeLog.EntityFramework.Interfaces;
 
-namespace Timelog.Common.Repositories
+namespace Timelog.DataAccess.Repositories
 {
     public class TagRepository : ITagRepository
     {
@@ -41,6 +42,22 @@ namespace Timelog.Common.Repositories
         public void Add(Tag tag)
         {
             DbContext.Tags.Add(tag);           
+        }
+
+        public Tag Update(Tag tag)
+        {
+            if (tag == null)
+                throw new Exception("Tag was not supplied.");
+
+            var t = GetById(tag.Id);
+
+            if (t == null)
+                throw new Exception($"Tag with id {tag.Id} does not exist.");
+
+            t.TagType = t.TagType;
+            t.Text = t.Text;
+
+            return t;
         }
         public bool Delete(int tagToDelete)
         {

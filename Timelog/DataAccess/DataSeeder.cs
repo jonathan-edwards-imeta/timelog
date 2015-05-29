@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Timelog.Common;
 using Timelog.Model;
 
-namespace Timelog.Common
+namespace Timelog.DataAccess
 {
     public class DataSeeder : IDataSeeder
     {

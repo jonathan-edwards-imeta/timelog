@@ -2,7 +2,7 @@
 using Timelog.Common.Interface;
 using TimeLog.EntityFramework.Interfaces;
 
-namespace Timelog.Common
+namespace Timelog.DataService
 {
     public abstract class DataService <T> : IDataService <T>
     {
@@ -29,12 +29,16 @@ namespace Timelog.Common
             }
         }
 
-        public void Delete(int t)
+        public bool Delete(int id)
         {
             using (var dbContextScope = DbContextScopeFactory.Create())
-            {                
-                Repository.Delete(t);
-                dbContextScope.SaveChanges();                
+            {
+                var item = Repository.GetById(id);
+                if (item == null)
+                    return false;
+                Repository.Delete(id);
+                dbContextScope.SaveChanges();
+                return true;
             }
         }       
 

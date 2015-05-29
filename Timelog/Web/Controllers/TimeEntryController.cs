@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Web.Http;
 using Timelog.Common.Interface;
 using Timelog.Model;
@@ -7,7 +7,7 @@ namespace Web.Controllers
 {
     public class TimeEntryController : ApiController
     {
-        ITimeEntryDataService _dataService;
+        private readonly ITimeEntryDataService _dataService;
 
         public TimeEntryController(ITimeEntryDataService dataService)
         {
@@ -26,21 +26,28 @@ namespace Web.Controllers
         }
 
         // POST /api/TimeEntry/5
-        public void Post(TimeEntry timeEntry)
+        public IHttpActionResult Post(TimeEntry timeEntry)
         {
             _dataService.Add(timeEntry);
+            return Created(new Uri(Url.Link("Api", new { controller = "TimeEntry", id = timeEntry.Id })), timeEntry);
         }
 
         // PUT /api/TimeEntry/???
-        public void Put(TimeEntry value)
+        public IHttpActionResult Put(TimeEntry value)
         {
-            _dataService.Put(value);           
+            _dataService.Put(value);
+
+            return Ok();
         }
 
         // DELETE /api/TimeEntry/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
-            _dataService.Delete(id);
+            var status = _dataService.Delete(id);
+            if(status)
+                return Ok();
+            else
+                return NotFound();
         }
     }
 }

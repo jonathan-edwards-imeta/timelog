@@ -3,7 +3,7 @@ using Timelog.Common.Interface;
 using Timelog.Model;
 using TimeLog.EntityFramework.Interfaces;
 
-namespace Timelog.Common
+namespace Timelog.DataService
 {
 
     public class TimeEntryDataService : DataService<TimeEntry>, ITimeEntryDataService

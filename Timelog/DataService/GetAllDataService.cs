@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Timelog.Common.Interface;
 using TimeLog.EntityFramework.Interfaces;
 
-namespace Timelog.Common
+namespace Timelog.DataService
 {
     public abstract class GetAllDataService<T> : DataService<T>, IGetAllDataService <T>
     {

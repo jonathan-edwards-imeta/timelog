@@ -1,22 +1,26 @@
-﻿using Timelog.Common.Interface;
-using System.Collections.Generic;
-using System.Web.Http;
-using Timelog.Model;
+﻿using System.Web.Http;
+using Timelog.Common.Interface;
 
 namespace Web.Controllers
 {
     public class TagTreeController : ApiController
     {
-        ITagTreeDataService _dataService;
+        private readonly ITagTreeDataService _dataService;
 
         public TagTreeController(ITagTreeDataService dataService)
         {
             _dataService = dataService;
-        }       
+        }
 
-        public IEnumerable<TagTree> Get()
+        public IHttpActionResult Get()
         {
-            return _dataService.GetAll();
+            var tagTrees = _dataService.GetAll();
+
+            if (tagTrees == null)
+            {
+                return NotFound();
+            }
+            return Ok(tagTrees);
         }
 
         public IHttpActionResult Get(int id)
