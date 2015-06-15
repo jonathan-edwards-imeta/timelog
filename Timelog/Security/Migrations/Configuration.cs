@@ -25,7 +25,7 @@ namespace Security.Migrations
             var user = new ApplicationUser()
             {
                 UserName = "SuperPowerUser",
-                Email = "test@imeta.com",
+                Email = "test@imeta.co.uk",
                 EmailConfirmed = true,
                 FirstName = "John",
                 LastName = "Smith",

@@ -13,13 +13,14 @@ namespace Security.Controllers
     [RoutePrefix("api/v1/accounts")]
     public class AccountsController : BaseApiController
     {
-
+        [Authorize]
         [Route("users")]
         public IHttpActionResult GetUsers()
         {
             return Ok(this.AppUserManager.Users.ToList().Select(u => this.TheModelFactory.Create(u)));
         }
 
+        [Authorize]
         [Route("user/{id:guid}", Name = "GetUserById")]
         public async Task<IHttpActionResult> GetUser(string Id)
         {
@@ -34,6 +35,7 @@ namespace Security.Controllers
 
         }
 
+        [Authorize]
         [Route("user/{username}")]
         public async Task<IHttpActionResult> GetUserByName(string username)
         {
@@ -48,6 +50,7 @@ namespace Security.Controllers
 
         }
 
+        [AllowAnonymous]
         [Route("create")]
         public async Task<IHttpActionResult> CreateUser(CreateUserBindingModel createUserModel)
         {
@@ -73,18 +76,20 @@ namespace Security.Controllers
                 return GetErrorResult(addUserResult);
             }
 
-            string code = await this.AppUserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            var code = await this.AppUserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            code = System.Web.HttpUtility.UrlEncode(code);
 
             var callbackUrl = new Uri(Url.Link("ConfirmEmailRoute", new { userId = user.Id, code = code }));
 
             await this.AppUserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-            Uri locationHeader = new Uri(Url.Link("GetUserById", new { id = user.Id }));
+            var locationHeader = new Uri(Url.Link("GetUserById", new { id = user.Id }));
 
             return Created(locationHeader, TheModelFactory.Create(user));
         }
 
-        [HttpPost]
+        [AllowAnonymous]
+        [HttpGet]
         [Route("ConfirmEmail", Name = "ConfirmEmailRoute")]
         public async Task<IHttpActionResult> ConfirmEmail(string userId = "", string code = "", string password ="")
         {
@@ -93,12 +98,7 @@ namespace Security.Controllers
                 ModelState.AddModelError("", "User Id and Code are required");
                 return BadRequest(ModelState);
             }
-
-            if (string.IsNullOrWhiteSpace(password))
-            {
-                ModelState.AddModelError("", "Password is required");
-                return BadRequest(ModelState);
-            }
+            code = System.Web.HttpUtility.UrlDecode(code);
 
             var appUser = await this.AppUserManager.FindByIdAsync(userId);
             if (appUser == null)
@@ -106,18 +106,11 @@ namespace Security.Controllers
                 ModelState.AddModelError("", "User Id is not recognised");
                 return BadRequest(ModelState);
             }
-            var passwordOk = await this.AppUserManager.CheckPasswordAsync(appUser, password);
-            if (!passwordOk)
-            {
-                ModelState.AddModelError("", "bad password");
-                return BadRequest(ModelState);
-            }
-
             IdentityResult result = await this.AppUserManager.ConfirmEmailAsync(userId, code);
 
             if (result.Succeeded)
             {
-                return Ok();
+                return Ok("Thanks for confirming your email address.");
             }
             else
             {
@@ -125,6 +118,7 @@ namespace Security.Controllers
             }
         }
 
+        [Authorize]
         [Route("ChangePassword")]
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
@@ -143,6 +137,7 @@ namespace Security.Controllers
             return Ok();
         }
 
+        [Authorize]
         [Route("user/{id:guid}")]
         public async Task<IHttpActionResult> DeleteUser(string id)
         {

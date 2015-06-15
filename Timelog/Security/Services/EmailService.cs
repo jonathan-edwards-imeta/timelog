@@ -23,7 +23,7 @@ namespace Security.Services
             var myMessage = new SendGridMessage();
 
             myMessage.AddTo(message.Destination);
-            myMessage.From = new System.Net.Mail.MailAddress("taiseer@bitoftech.net", "Taiseer Joudeh");
+            myMessage.From = new System.Net.Mail.MailAddress("timelog-no-reply@imeta.co.uk", "Time Log");
             myMessage.Subject = message.Subject;
             myMessage.Text = message.Body;
             myMessage.Html = message.Body;
