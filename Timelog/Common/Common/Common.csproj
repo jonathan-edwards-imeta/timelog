@@ -51,6 +51,8 @@
     <Compile Include="Interface\ITagTreeRepository.cs" />
     <Compile Include="Interface\ITimeEntryDataService.cs" />
     <Compile Include="Interface\ITimeEntryRepository.cs" />
+    <Compile Include="Interface\IUserDataService.cs" />
+    <Compile Include="Interface\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

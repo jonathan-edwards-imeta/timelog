@@ -53,6 +53,7 @@
     <Compile Include="TagDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeEntryDataService.cs" />
+    <Compile Include="UserDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common\Common.csproj">

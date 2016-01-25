@@ -28,16 +28,18 @@ namespace Web
 
             // register all your components with the container here
             // it is NOT necessary to register your controllers
+            container.RegisterType<IUserRepository, UserRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<ITagRepository, TagRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<ITagTreeRepository, TagTreeRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<IBookingCodeRepository, BookingCodeRepository>(new HierarchicalLifetimeManager());
             container.RegisterType<ITimeEntryRepository, TimeEntryRepository>(new HierarchicalLifetimeManager());
 
+            container.RegisterType<IUserDataService, UserDataService>(new HierarchicalLifetimeManager());
             container.RegisterType<ITagDataService, TagDataService>(new HierarchicalLifetimeManager());
             container.RegisterType<ITagTreeDataService, TagTreeDataService>(new HierarchicalLifetimeManager());
             container.RegisterType<IBookingCodeDataService, BookingCodeDataService>(new HierarchicalLifetimeManager());
             container.RegisterType<ITimeEntryDataService, TimeEntryDataService>(new HierarchicalLifetimeManager());
-
+            
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }

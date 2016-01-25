@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="TestDataGeneratorFactory.cs" />
     <Compile Include="Conventions\EnumRenamingConvention.cs" />
     <Compile Include="Conventions\ForeignKeyNamingConvention.cs" />
